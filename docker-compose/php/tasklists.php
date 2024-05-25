@@ -7,8 +7,7 @@ if (!isset($_SESSION['username'])) {
     header("Location: Login.php");
     exit();
 }
-
-include 'database.php';
+include 'connDB.php';
 
 // Κώδικας για δημιουργία εργασίας
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_task'])) {

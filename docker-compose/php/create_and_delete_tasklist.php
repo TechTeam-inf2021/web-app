@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-include 'database.php';
+include 'connDB.php';
 $username = $_SESSION['username'];
 
 $sql = "SELECT user_id FROM user_data WHERE username = '$username'";
