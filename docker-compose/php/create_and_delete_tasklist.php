@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-include 'database.php';
+include 'connDB.php';
 $username = $_SESSION['username'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
