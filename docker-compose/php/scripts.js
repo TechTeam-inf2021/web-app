@@ -7,7 +7,7 @@ const body = document.querySelector('body');
 
 // Check if there is a saved preference for dark mode in localStorage
 const darkModePreference = localStorage.getItem('darkMode');
-
+    
 // Set initial dark mode based on localStorage or default to light mode
 if (darkModePreference === 'true') {
     enableDarkMode();

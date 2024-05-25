@@ -5,8 +5,7 @@ if (!isset($_SESSION['username'])) {
     header("Location: index.php");
     exit;
 }
-
-include('database.php');
+include 'connDB.php';
 
 $username = $_SESSION['username'];
 

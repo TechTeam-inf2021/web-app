@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +21,7 @@
     <div class="navbar">
         <div class="navbar-right">
             <?php
-            session_start();
+            
             if(isset($_SESSION['username'])) {
                 echo "Καλώς ήρθες, " . $_SESSION['username'] . "!";
                 echo '<a href="logout.php">Αποσύνδεση</a>'; 

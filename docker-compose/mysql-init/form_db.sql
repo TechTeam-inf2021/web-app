@@ -72,7 +72,7 @@ CREATE TABLE `user_data` (
   `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `surname` varchar(40) NOT NULL,
   `username` varchar(40) NOT NULL,
-  `password` int(11) NOT NULL,
+  `password` varchar(40) NOT NULL,
   `email` varchar(40) NOT NULL,
   `simplepush_key` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL

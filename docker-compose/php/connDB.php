@@ -4,12 +4,12 @@
 	$password = 'webpass';
 	$dbname = 'di_internet_technologies_project';
 	
-	$conn = new mysqli($servername, $username, $password, $dbname);
+	$con = new mysqli($servername, $username, $password, $dbname);
 	
-	if ($conn->connect_error) {
-		die("Connection failed: ".$conn->connect_error);
+	if ($con->connect_error) {
+		die("Connection failed: ".$con->connect_error);
 	} else {
-		mysqli_set_charset($conn, 'utf8');	
+		mysqli_set_charset($con, 'utf8');	
 	}
 	
 ?>

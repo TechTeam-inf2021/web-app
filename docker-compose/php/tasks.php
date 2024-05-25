@@ -6,8 +6,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-include 'database.php'; 
-
+include 'connDB.php';
 // Έλεγχος εάν έχει υποβληθεί η φόρμα
 if(isset($_POST['submit'])){
     // Λήψη του ονόματος χρήστη από τη φόρμα

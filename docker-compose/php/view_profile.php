@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 // Αν ο χρήστης είναι συνδεδεμένος, εμφανίζουμε τα προσωπικά του στοιχεία
-include('database.php');
+include 'connDB.php';
 
 $username = $_SESSION['username'];
 
