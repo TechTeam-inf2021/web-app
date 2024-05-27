@@ -1,13 +1,3 @@
-<?php
-session_start();
-// Ελέγχουμε εάν ο χρήστης είναι συνδεδεμένος
-if (!isset($_SESSION['username'])) {
-    // Αν δεν είναι συνδεδεμένος, τον ανακατευθύνουμε στη σελίδα σύνδεσης
-    header("Location: ../help.php");
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +5,10 @@ if (!isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Your Team’s Projects From Anywhere | Trello</title>
     <link rel="icon" href="https://bxp-content-static.prod.public.atl-paas.net/img/favicon.ico">
-    <link rel="stylesheet" href="style.css">    
-    <script src="../script.js" defer></script>
+    
+    
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./JS/script.js" defer></script>
 </head>
 <body>
     <?php include 'navbar.php';?>

@@ -2,7 +2,7 @@
 session_start(); 
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 include 'navbar.php';
@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Διαχείριση Ανατεθειμένων Εργασιών</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <h1>Δημιουργία Νέας Εργασίας</h1>
@@ -111,8 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" name="change_status">Αλλαγή Κατάστασης</button>
     </form>
     <br>
+    <?php include "footer.php"; ?>
 </body>
 </html>
-
 
 
