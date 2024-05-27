@@ -4,10 +4,11 @@ session_start(); // Ξεκινά τη συνεδρία
 
 // Έλεγχος αν ο χρήστης έχει συνδεθεί, αν όχι τον ανακατευθύνει στη σελίδα σύνδεσης
 if (!isset($_SESSION['username'])) {
-    header("Location: Login.php");
+    header("Location: ../public/login.php");
     exit();
 }
-include 'connDB.php';
+include 'navbar.php';
+include '../connDB.php';
 
 // Κώδικας για δημιουργία εργασίας
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_task'])) {
@@ -62,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_task'])) {
 </head>
 <body>
     <h1>Δημιουργία Νέας Εργασίας</h1>
-    <form action="assigned_tasks.php" method="post">
+    <form action="tasks.php" method="post">
         <!-- Προσθέστε τα απαραίτητα πεδία εισόδου εδώ -->
         <button type="submit" name="create_task">Δημιουργία Εργασίας</button>
     </form>

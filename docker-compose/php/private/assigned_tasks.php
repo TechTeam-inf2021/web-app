@@ -1,12 +1,11 @@
-
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: Login.php");
+    header("Location: ../public/Login.php");
     exit();
 }
-
-include 'connDB.php';
+include 'navbar.php';
+include '../connDB.php';
 // Έλεγχος εάν έχει υποβληθεί η φόρμα
 if(isset($_POST['submit'])){
     // Λήψη του ονόματος χρήστη από τη φόρμα
@@ -23,7 +22,7 @@ if(isset($_POST['submit'])){
 
         // Εδώ γίνεται η ανάθεση της εργασίας στον συγκεκριμένο χρήστη
         $task_id = $_POST['task_id']; // Χρησιμοποιούμε το task_id από την φόρμα HTML
-        $sql_assign_task = "UPDATE Tasks SET usr_id = '$user_id' WHERE Task_Id = '$task_id'";
+        $sql_assign_task = "UPDATE tasks SET usr_id = '$user_id' WHERE Task_Id = '$task_id'";
         
         if ($con->query($sql_assign_task) === TRUE) {
             echo "Η εργασία ανατέθηκε με επιτυχία στον χρήστη με όνομα: $username και ID: $user_id";

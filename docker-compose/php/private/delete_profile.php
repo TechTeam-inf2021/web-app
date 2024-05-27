@@ -2,10 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: index.php");
+    header("Location: ../public/index.php");
     exit;
 }
-include 'connDB.php';
+
+include '../connDB.php';
 
 $username = $_SESSION['username'];
 
