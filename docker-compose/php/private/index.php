@@ -1,30 +1,37 @@
 <?php
 session_start();
+// Ελέγχουμε εάν ο χρήστης είναι συνδεδεμένος
+if (!isset($_SESSION['username'])) {
+    // Αν δεν είναι συνδεδεμένος, τον ανακατευθύνουμε στη σελίδα σύνδεσης
+    header("Location: ../index.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'navbar.php'?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Πλατφόρμα Διαχείρισης Λιστών Εργασιών</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="../scripts.js" defer></script>
-</head>
+    <script src="../script.js" defer></script>
 
+</head>
 <body>
+    <?php include 'navbar.php'?>
     <header>
         
             <?php
             
             if(isset($_SESSION['username'])) {
                 echo "<h1>Καλώς ήρθες, " . $_SESSION['username'] . "!</h1>";
-                echo '<a href="../private/logout.php">Αποσύνδεση</a>'; 
+                echo '<a href="logout.php">Αποσύνδεση</a>'; 
                 echo "</p>";
                 echo '<p>Αυτή η πλατφόρμα σας επιτρέπει να διαχειρίζεστε προσωπικές λίστες εργασιών.</p>';
             } else {
-                echo '<a href="login.php">Σύνδεση</a>';
+                echo '';
             }
             ?>
         </header>
@@ -36,10 +43,7 @@ session_start();
             </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 Πλατφόρμα Διαχείρισης Λιστών Εργασιών</p>
-    </footer>
-    <i class="bi bi-brightness-high-fill" id="dark"></i>
+    <?php include "footer.php"; ?>
 </body>
 
 

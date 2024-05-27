@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../public/Login.php");
+    header("Location: ../Login.php");
     exit();
 }
 include 'navbar.php';
