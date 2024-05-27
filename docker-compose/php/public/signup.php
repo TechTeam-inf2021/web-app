@@ -1,5 +1,5 @@
 <?php
-include 'connDB.php';
+include '../connDB.php';
 
 $name = $_POST["name"];
 $surname = $_POST["surname"];
@@ -21,5 +21,6 @@ if (mysqli_query($con, $sql)) {
 }
 
 mysqli_close($con);
-include 'register.html'
+include 'signup.html'
+
 ?>

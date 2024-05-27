@@ -33,3 +33,6 @@ networks:
   di_internet_technologies_network:
     name: di_internet_technologies_network
     driver: bridge
+
+volumes:
+  mysql-data:

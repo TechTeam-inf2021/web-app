@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: Login.php");
+    header("Location: ../public/login.php");
     exit();
 }
-
-include 'connDB.php';
+include 'navbar.php';
+include '../connDB.php';
 
 $username = $_SESSION['username'];
 

@@ -5,8 +5,8 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
-
-include 'connDB.php';
+include 'navbar.php';
+include '../connDB.php';
 
 $username = $_SESSION['username'];
 
@@ -108,3 +108,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     ?>
 </body>
 </html>
+
+
