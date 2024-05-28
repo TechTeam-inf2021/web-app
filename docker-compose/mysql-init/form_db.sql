@@ -113,3 +113,10 @@ INSERT INTO tasks (title, date_time, status, assigned_to, tasklist_id) VALUES
 ('Task 18', '2024-05-06 11:00:00', 'ολοκληρωμένη', 'johndoe1', 6),
 ('Task 19', '2024-05-07 09:00:00', 'σε αναμονή', 'johndoe1', 6),
 ('Task 20', '2024-05-07 10:00:00', 'σε εξέλιξη', 'johndoe1', 6);
+
+
+-- Add an index on the assigned_to column in the tasks table to speed up queries on this column
+CREATE INDEX idx_assigned_to ON tasks(assigned_to);
+
+-- Add an index on the user_name column in the tasklists table to speed up queries on this column
+CREATE INDEX idx_user_name ON tasklists(user_name);

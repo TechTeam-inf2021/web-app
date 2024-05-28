@@ -5,6 +5,7 @@ body {
     background-color:rgb(211, 236, 245);
     color: #020202;
     overflow-x: hidden;
+    overflow-y:scroll ;
 }
 
 i {
@@ -27,6 +28,7 @@ footer {
     position: fixed;
     height: 50px;
     bottom: 0px;
+    margin-top: 10px;
     width: 100%;
 }
 

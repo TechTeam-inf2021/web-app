@@ -1,7 +1,7 @@
 body {
     font-family: Arial;
     margin: 0;
-    padding: 0;
+    padding-bottom: 30px;
     background-color:rgb(211, 236, 245);
     color: #020202;
     overflow: hidden;
