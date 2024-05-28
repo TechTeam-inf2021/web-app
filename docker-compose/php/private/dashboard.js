@@ -12,21 +12,6 @@ function info(id){
     }
 }
 
-function filterTaskLists() {
-    var input = document.querySelector('.search-bar-tasklists');
-    var filter = input.value.toLowerCase();
-    var tasklistContainer = document.getElementById('tasklist-container');
-    var tasklists = tasklistContainer.getElementsByClassName('tasklist-item');
-    
-    for (var i = 0; i < tasklists.length; i++) {
-        var title = tasklists[i].getAttribute('data-title');
-        if (title.indexOf(filter) > -1) {
-            tasklists[i].style.display = "";
-        } else {
-            tasklists[i].style.display = "none";
-        }
-    }
-}
 
 function filterTasks(input, tasklistId) {
     var filter = input.value.toLowerCase();
@@ -43,3 +28,32 @@ function filterTasks(input, tasklistId) {
         }
     }
 }
+
+
+function filterTaskLists() {
+            var input = document.querySelector('.search-bar-tasklists');
+            var filter = input.value.toLowerCase();
+            var tasklistContainer = document.getElementById('tasklist-container');
+            var tasklists = tasklistContainer.getElementsByClassName('tasklist-item');
+            
+            for (var i = 0; i < tasklists.length; i++) {
+                var title = tasklists[i].getAttribute('data-title');
+                if (title.indexOf(filter) > -1) {
+                    tasklists[i].style.display = "";
+                } else {
+                    tasklists[i].style.display = "none";
+                }
+            }
+
+            var assignedTasklistContainer = document.getElementById('assigned-tasklist-container');
+            var assignedTasklists = assignedTasklistContainer.getElementsByClassName('tasklist-item');
+            
+            for (var i = 0; i < assignedTasklists.length; i++) {
+                var title = assignedTasklists[i].getAttribute('data-title');
+                if (title.indexOf(filter) > -1) {
+                    assignedTasklists[i].style.display = "";
+                } else {
+                    assignedTasklists[i].style.display = "none";
+                }
+            }
+        }
