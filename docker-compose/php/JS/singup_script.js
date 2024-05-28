@@ -1,13 +1,11 @@
-// scripts.js
-
-// dark mode
-
+const darkModePreference = localStorage.getItem('darkMode');
 const toggle = document.getElementById('dark');
 const body = document.querySelector('body');
-
-// Check if there is a saved preference for dark mode in localStorage
-const darkModePreference = localStorage.getItem('darkMode');
-    
+const footer = document.querySelector('footer');
+let background_dark_mode = "rgb(8, 217, 207)";
+let color_dark_mode = "rgb(9, 30, 66)";
+let background_light_mode = "rgb(9, 30, 66)";
+let color_light_mode = "rgb(8, 217, 207)";
 // Set initial dark mode based on localStorage or default to light mode
 if (darkModePreference === 'true') {
     enableDarkMode();
@@ -26,36 +24,29 @@ toggle.addEventListener('click', function () {
     }
 });
 
+
 // Function to enable dark mode
 function enableDarkMode() {
     toggle.classList.add('bi-moon');
-    body.style.background = 'black';
-    body.style.color = 'white';
+    body.style.background = color_dark_mode;
+    body.style.color = 'rgb(211, 236, 245)';
     body.style.transition = '2s';
+
+    footer.style.background = background_dark_mode;
+    footer.style.color = color_dark_mode;
+    footer.style.transition = '2s';    
+
+
+
 }
 
 // Function to enable light mode
 function enableLightMode() {
     toggle.classList.remove('bi-moon');
-    body.style.background = 'white';
-    body.style.color = 'black';
+    body.style.background = 'rgb(211, 236, 245)';
+    body.style.color = '#020202';
     body.style.transition = '2s';
+    footer.style.background = background_light_mode;
+    footer.style.color = color_light_mode;
+    footer.style.transition = '2s';
 }
-
-
-
-
-// accordition
-document.addEventListener("DOMContentLoaded", function() {
-    const accordionHeaders = document.querySelectorAll(".accordion-header");
-
-    accordionHeaders.forEach(header => {
-        header.addEventListener("click", function() {
-            const content = this.nextElementSibling;
-            content.classList.toggle("active");
-        });
-    });
-});
-
-
-

@@ -1,12 +1,16 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: Arial;
+    background-color: rgb(211, 236, 245);
     display: flex;
     justify-content: center;
     align-items: center;
+
     height: 100vh;
     margin: 0;
+    padding: 0;
+    color: #020202;
 }
+
 
 .login-container {
     background-color: #fff;
@@ -64,4 +68,21 @@ body {
     text-align: center;
     position: relative;
     margin-bottom: 10px;
+}
+
+#goback{
+    color: white;
+    text-decoration: none;
+    padding: 5px 30px;
+    position: absolute;
+    float: right;
+    margin: 10px;
+    bottom: 0;
+    background-color: #555;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#goback:hover{
+    background-color:  #777;
 }

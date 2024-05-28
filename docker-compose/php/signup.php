@@ -1,5 +1,5 @@
 <?php
-include '../connDB.php';
+include 'connDB.php';
 
 $name = $_POST["name"];
 $surname = $_POST["surname"];

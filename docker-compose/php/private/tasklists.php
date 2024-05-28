@@ -4,7 +4,7 @@ session_start(); // Ξεκινά τη συνεδρία
 
 // Έλεγχος αν ο χρήστης έχει συνδεθεί, αν όχι τον ανακατευθύνει στη σελίδα σύνδεσης
 if (!isset($_SESSION['username'])) {
-    header("Location: ../public/login.php");
+    header("Location: ../login.php");
     exit();
 }
 include 'navbar.php';
@@ -69,15 +69,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_task'])) {
     </form>
     
     <h1>Διαγραφή Εργασίας</h1>
-    <form action="assigned_tasks.php" method="post">
+    <form action="tasks.php" method="post">
         <!-- Προσθέστε τα απαραίτητα πεδία εισόδου εδώ -->
         <button type="submit" name="delete_task">Διαγραφή Εργασίας</button>
     </form>
 
     <h1>Επεξεργασία Εργασίας</h1>
-    <form action="assigned_tasks.php" method="post">
+    <form action="tasks.php" method="post">
         <!-- Προσθέστε τα απαραίτητα πεδία εισόδου εδώ -->
         <button type="submit" name="edit_task">Επεξεργασία Εργασίας</button>
     </form>
+    <?php include "footer.php"; ?>
 </body>
 </html>

@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar Example</title>
-    <link rel="stylesheet" href="navbar.css">
+    <title>Manage Your Team’s Projects From Anywhere | Trello</title>
+    <link rel="icon" href="https://bxp-content-static.prod.public.atl-paas.net/img/favicon.ico">
+    
+    
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./JS/script.js" defer></script>
 </head>
 <body>
-
-    <nav>
+    <nav id="navbar">
         <label class="logo">
             Trello
         </label>
@@ -19,6 +22,5 @@
             <a href="signup.html">sign-up</a></li>
         </ul>
     </nav>
-        
 </body>
 </html>

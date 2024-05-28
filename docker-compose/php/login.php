@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include '../connDB.php';
+include 'connDB.php';
 
 // Initialize variables
 if (!isset($_SESSION['error_msg'])) {
@@ -27,14 +27,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['insert_password'] = "<div class='insert'>Παρακαλώ εισάγετε το password</div>";
         }
     } else {
-        $query = "SELECT * FROM user_data WHERE username='$username' AND password='$password'";
+        $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
         $result = mysqli_query($con, $query);
         $row = mysqli_fetch_array($result);
         $count = mysqli_num_rows($result);
         
         if($count == 1) {
             $_SESSION['username'] = $username;
-            header("Location: ../private/index.php");
+            header("Location: /private/index.php");
         } else {
               $_SESSION['insert_username'] = "";
             $_SESSION['insert_password'] = "";
@@ -52,8 +52,9 @@ mysqli_close($con);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="login_style.css">
+    <title>Login | Trello</title>
+    <link rel="icon" href="https://bxp-content-static.prod.public.atl-paas.net/img/favicon.ico">
+    <link rel="stylesheet" href="./css/login_style.css">
 </head>
 <body>
     <div class="login-container">

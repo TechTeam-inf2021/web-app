@@ -4,7 +4,7 @@ session_start();
 // Ελέγχουμε εάν ο χρήστης είναι συνδεδεμένος
 if (!isset($_SESSION['username'])) {
     // Αν δεν είναι συνδεδεμένος, τον ανακατευθύνουμε στη σελίδα σύνδεσης
-    header("Location: ../public/login.php");
+    header("Location: ../login.php");
     exit;
 }
 include 'navbar.php';
@@ -13,7 +13,7 @@ include '../connDB.php';
 
 $username = $_SESSION['username'];
 
-$sql = "SELECT * FROM user_data WHERE username = '$username'";
+$sql = "SELECT * FROM users WHERE username = '$username'";
 $result = mysqli_query($con, $sql);
 
 if (!$result) {
@@ -36,4 +36,6 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 mysqli_close($con);
+
+include 'footer.php';
 ?>

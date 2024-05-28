@@ -26,119 +26,90 @@ SET time_zone = "+00:00";
 --
 -- Δομή πίνακα για τον πίνακα `tasklists`
 --
+USE di_internet_technologies_project;
 
-CREATE TABLE `tasklists` (
-  `List_Id` int(11) NOT NULL,
-  `User_Idf` int(11) NOT NULL,
-  `Name_of_List` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS tasks;
+DROP TABLE IF EXISTS tasklists;
+DROP TABLE IF EXISTS users;
 
---
--- Άδειασμα δεδομένων του πίνακα `tasklists`
---
+CREATE TABLE users (
+    name VARCHAR(255),
+    surname VARCHAR(255),
+    username VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255),
+    email VARCHAR(255),
+    simplepushio_key VARCHAR(255)
+);
 
-INSERT INTO `tasklists` (`List_Id`, `User_Idf`, `Name_of_List`) VALUES
-(79381455, 78228003, 'Axileas');
+INSERT INTO users (name, surname, username, password, email, simplepushio_key) VALUES
+('John', 'Doe', 'johndoe1', 'password1', 'johndoe1@example.com', 'key1'),
+('Jane', 'Smith', 'janesmith1', 'password2', 'janesmith1@example.com', 'key2'),
+('Alice', 'Johnson', 'alicejohnson1', 'password3', 'alicejohnson1@example.com', 'key3'),
+('Bob', 'Brown', 'bobbrown1', 'password4', 'bobbrown1@example.com', 'key4'),
+('Charlie', 'Davis', 'charliedavis1', 'password5', 'charliedavis1@example.com', 'key5'),
+('Eve', 'Miller', 'evemiller1', 'password6', 'evemiller1@example.com', 'key6'),
+('Frank', 'Wilson', 'frankwilson1', 'password7', 'frankwilson1@example.com', 'key7'),
+('Grace', 'Moore', 'gracemoore1', 'password8', 'gracemoore1@example.com', 'key8'),
+('Hank', 'Taylor', 'hanktaylor1', 'password9', 'hanktaylor1@example.com', 'key9'),
+('Ivy', 'Anderson', 'ivyanderson1', 'password10', 'ivyanderson1@example.com', 'key10');
 
--- --------------------------------------------------------
 
---
--- Δομή πίνακα για τον πίνακα `tasks`
---
+CREATE TABLE tasklists (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    user_name VARCHAR(255),
+    FOREIGN KEY (user_name) REFERENCES users(username)
+);
 
-CREATE TABLE `tasks` (
-  `Task_Id` int(11) NOT NULL,
-  `list_id` int(11) NOT NULL,
-  `usr_id` int(11) NOT NULL,
-  `Name_of_task` varchar(255) NOT NULL,
-  `Date_creation` date NOT NULL,
-  `status` int(255) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO tasklists (title, user_name) VALUES
+('Project Alpha', 'johndoe1'),
+('Project Alpha', 'johndoe1'),
+('Project Alpha', 'johndoe1'),
+('Project Alpha', 'johndoe1'),
+('Project Alpha', 'johndoe1'),
+('Project Alpha', 'johndoe1'),
+('Project Alpha', 'johndoe1'),
+('Project Alpha', 'johndoe1'),
+('Project Beta', 'janesmith1'),
+('Project Gamma', 'alicejohnson1'),
+('Project Delta', 'bobbrown1'),
+('Project Epsilon', 'charliedavis1'),
+('Project Alpha - Phase 2', 'johndoe1'),
+('Project Beta - Phase 2', 'janesmith1'),
+('Project Gamma - Phase 2', 'alicejohnson1'),
+('Project Delta - Phase 2', 'bobbrown1'),
+('Project Epsilon - Phase 2', 'charliedavis1');
 
---
--- Άδειασμα δεδομένων του πίνακα `tasks`
---
 
-INSERT INTO `tasks` (`Task_Id`, `list_id`, `usr_id`, `Name_of_task`, `Date_creation`, `status`) VALUES
-(28678062, 79381455, 78228003, 'axileas', '2024-05-07', 0);
+CREATE TABLE tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    date_time DATETIME,
+    status VARCHAR(50) DEFAULT 'σε αναμονή',
+    assigned_to VARCHAR(255),
+    tasklist_id INT,
+    FOREIGN KEY (assigned_to) REFERENCES users(username),
+    FOREIGN KEY (tasklist_id) REFERENCES tasklists(id)
+);
 
--- --------------------------------------------------------
-
---
--- Δομή πίνακα για τον πίνακα `user_data`
---
-
-CREATE TABLE `user_data` (
-  `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `surname` varchar(40) NOT NULL,
-  `username` varchar(40) NOT NULL,
-  `password` varchar(40) NOT NULL,
-  `email` varchar(40) NOT NULL,
-  `simplepush_key` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Άδειασμα δεδομένων του πίνακα `user_data`
---
-
-INSERT INTO `user_data` (`name`, `surname`, `username`, `password`, `email`, `simplepush_key`, `user_id`) VALUES
-('Αποστολης', 'Νικολαιδης', 'PanNik', 1111, 'axileas32@gmail.com', '2345', 60150127),
-('Axileas', 'Ζερβος', 'Kapetan', 2222, 'jack2@gmail.com', '1234', 78228003);
-
---
--- Ευρετήρια για άχρηστους πίνακες
---
-
---
--- Ευρετήρια για πίνακα `tasklists`
---
-ALTER TABLE `tasklists`
-  ADD PRIMARY KEY (`List_Id`),
-  ADD KEY `User_Id` (`User_Idf`);
-
---
--- Ευρετήρια για πίνακα `tasks`
---
-ALTER TABLE `tasks`
-  ADD PRIMARY KEY (`Task_Id`),
-  ADD KEY `list_id` (`list_id`),
-  ADD KEY `usr_id` (`usr_id`);
-
---
--- Ευρετήρια για πίνακα `user_data`
---
-ALTER TABLE `user_data`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT για άχρηστους πίνακες
---
-
---
--- AUTO_INCREMENT για πίνακα `user_data`
---
-ALTER TABLE `user_data`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78228004;
-
---
--- Περιορισμοί για άχρηστους πίνακες
---
-
---
--- Περιορισμοί για πίνακα `tasklists`
---
-ALTER TABLE `tasklists`
-  ADD CONSTRAINT `tasklists_ibfk_1` FOREIGN KEY (`User_Idf`) REFERENCES `user_data` (`user_id`);
-
---
--- Περιορισμοί για πίνακα `tasks`
---
-ALTER TABLE `tasks`
-  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`list_id`) REFERENCES `tasklists` (`List_Id`),
-  ADD CONSTRAINT `tasks_ibfk_2` FOREIGN KEY (`usr_id`) REFERENCES `user_data` (`user_id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+INSERT INTO tasks (title, date_time, status, assigned_to, tasklist_id) VALUES
+('Task 1', '2024-05-01 09:00:00', 'σε αναμονή', 'johndoe1', 1),
+('Task 2', '2024-05-01 10:00:00', 'σε εξέλιξη', 'johndoe1', 1),
+('Task 3', '2024-05-01 11:00:00', 'ολοκληρωμένη', 'johndoe1', 1),
+('Task 4', '2024-05-02 09:00:00', 'σε αναμονή', 'johndoe1', 1),
+('Task 5', '2024-05-02 10:00:00', 'σε εξέλιξη', 'johndoe1', 1),
+('Task 6', '2024-05-02 11:00:00', 'ολοκληρωμένη', 'johndoe1', 1),
+('Task 7', '2024-05-03 09:00:00', 'σε αναμονή', 'johndoe1', 1),
+('Task 8', '2024-05-03 10:00:00', 'σε εξέλιξη', 'johndoe1', 1),
+('Task 9', '2024-05-03 11:00:00', 'ολοκληρωμένη', 'johndoe1', 1),
+('Task 10', '2024-05-04 09:00:00', 'σε αναμονή', 'johndoe1', 1),
+('Task 11', '2024-05-04 10:00:00', 'σε εξέλιξη', 'johndoe1', 1),
+('Task 12', '2024-05-04 11:00:00', 'ολοκληρωμένη', 'johndoe1', 1),
+('Task 13', '2024-05-05 09:00:00', 'σε αναμονή', 'johndoe1', 6),
+('Task 14', '2024-05-05 10:00:00', 'σε εξέλιξη', 'johndoe1', 6),
+('Task 15', '2024-05-05 11:00:00', 'ολοκληρωμένη', 'johndoe1', 6),
+('Task 16', '2024-05-06 09:00:00', 'σε αναμονή', 'johndoe1', 6),
+('Task 17', '2024-05-06 10:00:00', 'σε εξέλιξη', 'johndoe1', 6),
+('Task 18', '2024-05-06 11:00:00', 'ολοκληρωμένη', 'johndoe1', 6),
+('Task 19', '2024-05-07 09:00:00', 'σε αναμονή', 'johndoe1', 6),
+('Task 20', '2024-05-07 10:00:00', 'σε εξέλιξη', 'johndoe1', 6);
