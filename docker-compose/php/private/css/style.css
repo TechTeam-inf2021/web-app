@@ -1,58 +1,149 @@
-
 body {
     font-family: Arial;
     margin: 0;
     padding: 0;
     background-color: rgb(211, 236, 245);
     color: #020202;
-    
 }
+
 .tasklist {
     flex: 0 0 auto;
-    /* Ensures flex items do not shrink or grow */
     margin-left: 10px;
     padding: 10px;
     max-height: 400px;
+    
+    /* Add background color */
+    border-radius: 8px;
+
 }
 
 .tasklist-item {
     margin-right: 10px;
     display: inline-block;
-    max-width:400px;
+    max-width: 400px;
     padding: 10px;
     border: 2px solid black;
     vertical-align: top;
+    background-color: #f9f9f9;
+    /* Light background color */
+    border-radius: 8px;
+    /* Rounded corners */
 }
 
 .tasklist-title {
     margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 .search-bar {
-    width: 100%;
+    width: 70%;
     box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
 }
 
 .tasklist-container {
     display: flex;
-    flex-wrap: nowrap;
-    /* Prevents wrapping, ensures horizontal scrolling */
+    
     overflow-x: auto;
-    /* Enables horizontal scrolling */
     overflow-y: auto;
-    /* Enables vertical scrolling */
     max-height: calc(100vh - 100px);
-    /* Adjust the height to be less than the viewport height minus footer height */
     padding: 10px;
+    max-width: 10000px;
+    margin-left: 40px;
+    margin-right: 40px;
     border: 3px solid black;
+    background-color: #f1f1f1;
+    /* Light background color */
+    border-radius: 8px;
+    /* Rounded corners */
 }
 
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 4px;
+    /* Rounded corners */
+    background-color: #ffffff;
+    /* Background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
 
-.info{
+.info {
     display: none;
     padding: 10px;
 }
 
-.info_button:hover{
+.info_button {
+    margin: 10px 30px;
+    border-radius: 5px;
+    height: 40px;
+    background-color: #007bff;
+    /* Primary button color */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Smooth transition */
+}
+
+.info_button:hover {
+    background-color: #0056b3;
+    /* Darker on hover */
+}
+
+.add-task-bar {
+    width: 60%;
+    height: 30px;
+    padding: 5px;
+    margin-top: 4px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #28a745;
+    /* Green background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    /* Smooth transition */
+}
+
+button:hover {
+    background-color: #218838;
+    /* Darker green on hover */
+}
+
+select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Smooth transition */
+}
+
+select:hover {
+    background-color: #f1f1f1;
+    /* Slightly darker on hover */
 }
