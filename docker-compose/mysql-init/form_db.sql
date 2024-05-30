@@ -42,8 +42,8 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (name, surname, username, password, email, simplepushio_key) VALUES
-('John', 'Doe', 'johndoe1', 'password1', 'johndoe1@example.com', 'key1'),
-('Jane', 'Smith', 'janesmith1', 'password2', 'janesmith1@example.com', 'key2'),
+('John', 'Doe', 'johndoe1', 'password1', 'johndoe1@example.com', 'Hza3j3'),
+('Jane', 'Smith', 'janesmith1', 'password2', 'janesmith1@example.com', '73utPa'),
 ('Alice', 'Johnson', 'alicejohnson1', 'password3', 'alicejohnson1@example.com', 'key3'),
 ('Bob', 'Brown', 'bobbrown1', 'password4', 'bobbrown1@example.com', 'key4'),
 ('Charlie', 'Davis', 'charliedavis1', 'password5', 'charliedavis1@example.com', 'key5'),
