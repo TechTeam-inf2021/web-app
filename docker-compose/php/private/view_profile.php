@@ -13,6 +13,14 @@ include '../connDB.php';
 
 $username = $_SESSION['username'];
 
+function generateRandomString($length = 10) {
+  return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}
+
+$random_username = generateRandomString(10);
+$random_email = generateRandomString(5) . '@example.com';
+$random_password = password_hash(generateRandomString(12), PASSWORD_DEFAULT);
+
 $sql = "SELECT * FROM users WHERE username = '$username'";
 $result = mysqli_query($con, $sql);
 
@@ -27,7 +35,6 @@ if (mysqli_num_rows($result) > 0) {
   echo "Επώνυμο: " . $row["surname"] . "<br>";
   echo "Όνομα Χρήστη: " . $row["username"] . "<br>";
   echo "Email: " . $row["email"] . "<br>";
-  echo "User_Id: " . $row["user_id"] . "<br>";
   echo '<form action="delete_profile.php" method="post">';
   echo '<input type="submit" value="Διαγραφή προφίλ">';
   echo '</form>';
@@ -39,3 +46,4 @@ mysqli_close($con);
 
 include 'footer.php';
 ?>
+

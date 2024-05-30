@@ -7,18 +7,44 @@ if (!isset($_SESSION['username'])) {
 
 include '../connDB.php';
 
+function sendSimplepushNotification($key, $title, $message) {
+    $url = 'https://api.simplepush.io/send';
+
+    $data = array(
+        'key' => $key,
+        'title' => $title,
+        'msg' => $message
+    );
+
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/json\r\n",
+            'method'  => 'POST',
+            'content' => json_encode($data),
+        ),
+    );
+
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    return $result;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $task_id = $_POST['task_id'];
     $assigned_to = $_POST['assigned_to'];
 
-    // Check if the assigned_to user exists in the users table
     $sql_check_user = "SELECT * FROM users WHERE username='$assigned_to'";
     $result_check_user = $con->query($sql_check_user);
     if ($result_check_user->num_rows > 0) {
-        // Update the task with the new assigned user
+        $user = $result_check_user->fetch_assoc();
+        $simplepush_key = $user['simplepushio_key']; 
         $sql_assign = "UPDATE tasks SET assigned_to='$assigned_to' WHERE id='$task_id'";
         if ($con->query($sql_assign) === TRUE) {
             $_SESSION['success_message'] = "Task assigned successfully.";
+            $task_title = "New Task Assigned";
+            $message = "You have been assigned a new task.";
+            sendSimplepushNotification($simplepush_key, $task_title, $message);
         } else {
             $_SESSION['error_message'] = "Error: " . $con->error;
         }
