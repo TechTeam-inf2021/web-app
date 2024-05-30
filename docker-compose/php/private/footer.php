@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=\, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="../script.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <footer>

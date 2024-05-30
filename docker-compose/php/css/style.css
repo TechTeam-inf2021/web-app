@@ -5,10 +5,13 @@ body {
     background-color:rgb(211, 236, 245);
     color: #020202;
     overflow: hidden;
+    font-size: 18px;
 }
 
 i {
     font-size: 40px;
+    padding: 10px;
+    margin-right: 20px;
     cursor: pointer;
     position: absolute;
     top: 10px;
@@ -39,19 +42,19 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 100px;
+    padding: 0 40px;
 }
 label.logo {
     color: rgb(8, 217, 207);
-    font-size: 35px;
+    font-size: 60px;
     line-height: 80px;
-    padding: 0 100px;
+    float: left;
     font-weight: bold;
 }
 nav ul{
     list-style:none;
     float: right;
-    margin-right: 160px;
+    margin-right: 90px;
     
 }
 nav ul li{
@@ -78,18 +81,20 @@ nav ul li a:hover {
 }
 
 .accordion-item {
-    margin: 10px 0;
+    margin: 0px 0;
 }
 
 .accordion-header {
-    background-color: #f1f1f1;
+    background-color: rgb(9, 30, 66);
     cursor: pointer;
     padding: 10px;
-    border: none;
+
+    border: 3px solid rgb(8, 217, 207);
     outline: none;
+    color: rgb(8, 217, 207);
     width: 100%;
     text-align: left;
-    font-size: 18px;
+    font-size: 30px;
 }
 
 .accordion-content {
@@ -116,4 +121,14 @@ nav ul li a:hover {
     background-color: rgb(121, 66, 172);
 }
 
+
+.accordion-header span{
+    font-size: 50px;
+    float: right;
+    margin-right: 10px;
+}
+
+header h1{
+    font-size: 60px;
+}
 

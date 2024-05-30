@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $sql = "INSERT INTO tasks (title, date_time, status, assigned_to, tasklist_id) 
-            VALUES ('$title', '$date_time', '$status', '$username', '$tasklist_id')";
+            VALUES ('$title', '$date_time', '$status', null, '$tasklist_id')";
 
     if ($con->query($sql) === TRUE) {
         header("Location: dashboard.php");

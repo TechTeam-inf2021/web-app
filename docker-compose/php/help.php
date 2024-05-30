@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Your Team’s Projects From Anywhere | Trello</title>
+    <title>Help | Trello</title>
     <link rel="icon" href="https://bxp-content-static.prod.public.atl-paas.net/img/favicon.ico">
     
     
@@ -13,19 +13,18 @@
 <body>
     <?php include 'navbar.php';?>
     <header>
-        <h1>Βοήθεια</h1>
+        <h1>Συχνές Ερωτήσεις</h1>
     </header>
     <section id="help-section">
-        <h2>Συχνές Ερωτήσεις</h2>
         <div class="accordion">
             <div class="accordion-item">
-                <button class="accordion-header">Πώς προσθέτω μια νέα εργασία;</button>
+                <button class="accordion-header">Πώς προσθέτω μια νέα εργασία;<span><img src='arrows.svg'></span></button>
                 <div class="accordion-content">
                     <p>Για να προσθέσετε μια νέα εργασία, πηγαίνετε στη λίστα εργασιών σας και κάντε κλικ στο κουμπί "Προσθήκη Εργασίας".</p>
                 </div>
             </div>
             <div class="accordion-item">
-                <button class="accordion-header">Πώς επεξεργάζομαι μια εργασία;</button>
+                <button class="accordion-header">Πώς επεξεργάζομαι μια εργασία; <span><img src='arrows.svg'></span></button>
                 <div class="accordion-content">
                     <p>Για να επεξεργαστείτε μια εργασία, κάντε κλικ στην εργασία και επιλέξτε "Επεξεργασία".</p>
                 </div>

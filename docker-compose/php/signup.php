@@ -7,11 +7,11 @@ $username_input = $_POST["username"];
 $password = $_POST["password"];
 $email = $_POST["email"];
 $simplepush_key = $_POST["simplepush_key"];
-$user_id = mt_rand(10000000, 99999999);
 
 
 
-$sql = "INSERT INTO user_data (name, surname, username, password, email, simplepush_key, user_id) VALUES ('$name', '$surname', '$username_input', '$password', '$email', '$simplepush_key', '$user_id')";
+
+$sql = "INSERT INTO users (name, surname, username, password, email, simplepushio_key) VALUES ('$name', '$surname', '$username_input', '$password', '$email', '$simplepush_key')";
 
 if (mysqli_query($con, $sql)) {
   header("Location: login.php");
