@@ -20,7 +20,7 @@
                     <li><a href="assignments.php">Assignments</a></li>
                 </ul>
             </li>
-            <li><a href="export.html">Export</a></li>
+            <li><a href="export.php">Export</a></li>
             <li><a href="help.php">Help</a></li>
         </ul>
     </nav>

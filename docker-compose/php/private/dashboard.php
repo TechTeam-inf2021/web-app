@@ -44,8 +44,13 @@ $username = $_SESSION['username'];
             }
             
             if (isset($_SESSION['error_message_task'])) {
-                echo "<p style='color: red;text-align:center;font-size:3em;'>" . $_SESSION['error_message_task'] . "</p>";
+                echo "<p style='color: red;text-align:center;font-size:1em;'>" . $_SESSION['error_message_task'] . "</p>";
                 unset($_SESSION['error_message_task']); // Clear the error message after displaying it
+            }
+
+            if (isset($_SESSION['success_message'])) {
+                echo "<p style='color: green;'>" . $_SESSION['success_message'] . "</p>";
+                unset($_SESSION['success_message']); // Clear the error message after displaying it
             }
             ?>
             </form>

@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql_assign = "UPDATE tasks SET assigned_to='$assigned_to' WHERE id='$task_id'";
         if ($con->query($sql_assign) === TRUE) {
             $_SESSION['success_message'] = "Task assigned successfully.";
-            $task_title = "New Task Assigned";
+            $task_title = "New Task Assigned: ";
             $message = "You have been assigned a new task.";
             sendSimplepushNotification($simplepush_key, $task_title, $message);
         } else {
