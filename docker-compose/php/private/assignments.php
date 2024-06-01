@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-include 'navbar.php';
+include './include/navbar.php';
 include '../connDB.php';
 $username = $_SESSION['username'];
 ?>
@@ -16,15 +16,16 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasklists & Tasks</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./css/style.css">
+
+    
+    <link rel="stylesheet" href="./styles/dashboard-theme.css">
     <script src="dashboard.js" defer></script>
 </head>
 <body>
     <ul class="header">
         <li>
             <h2>Search Assignment:</h2>
-            <input type="text" placeholder="Search task lists..." class="search-bar-tasklists" onkeyup="filterAssignments()" style="margin-bottom: 20px;">
+            <input type="text" placeholder="Search task lists..." class="search-tasklist" onkeyup="filterAssignments()" style="margin-bottom: 20px;">
         </li>
         <li>
             <!-- Display error messages if any -->
@@ -54,7 +55,13 @@ $username = $_SESSION['username'];
                 $tasklist_id = $row["id"];
                 echo "<div class='tasklist-item' data-title='" . strtolower($row["title"]) . "'>";
                 echo "<div class='tasklist-title'>" . $row["title"] . " (Created by: " . $row["user_name"] . ")</div>";
-                echo "<input type='text' placeholder='Search tasks...' class='search-bar' onkeyup='filterTasks(this, $tasklist_id,$count_tasklists)'>";
+                                echo "<div><input type='text' placeholder='Search tasks...' class='search-task' id='search-task-$tasklist_id' onkeyup='filterTasks($tasklist_id)'></div>";
+                echo "<select id='task-status-$tasklist_id' onchange='filterTasks($tasklist_id)'>";
+                echo "<option value=''>All statuses</option>";
+                echo "<option value='σε αναμονή'>σε αναμονή</option>";
+                echo "<option value='σε εξέλιξη'>σε εξέλιξη</option>";
+                echo "<option value='ολοκληρωμένη'>ολοκληρωμένη</option>";
+                echo "</select>";
                 echo "<div class='task-container' id='task-container-$tasklist_id'>";
                     $sql_assigned_tasks = "SELECT * FROM tasks WHERE tasklist_id='$tasklist_id' AND assigned_to='$username'";
                     $result_assigned_tasks = $con->query($sql_assigned_tasks);
@@ -72,19 +79,20 @@ $username = $_SESSION['username'];
                     } else {
                         echo "<p>No tasks assigned to you in this list.</p>";
                     }
-                    echo "<div class='results' style='display: none;'>no search results</div>";
+                echo "<div id='results-$tasklist_id' style='display: none;color:red;font-size:20px;'>0 search results</div>";
                 echo "</div>";
                 echo "</div>";
             $count_tasklists++;
             }
-            
-            echo "<div id='results' style='display: none;'>no search results</div>";
+            echo "<div class='center'>";
+            echo "<div id='results' style='display: none;color:red;font-size:20px;'>no search results</div>";
+            echo "</div>";
             echo "</div>";
         } else {
             echo "You have 0 Assignment lists";
         }
         echo "</div>";
-    include 'footer.php';
+    include './include/footer.php';
     ?>
 </body>
 </html>

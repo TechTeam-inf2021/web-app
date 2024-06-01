@@ -4,10 +4,12 @@ session_start();
 // Ελέγχουμε εάν ο χρήστης είναι συνδεδεμένος
 if (!isset($_SESSION['username'])) {
     // Αν δεν είναι συνδεδεμένος, τον ανακατευθύνουμε στη σελίδα σύνδεσης
-    header("Location: ../login.php");
+    header("Location: ../auth/login.php");
     exit;
 }
-include 'navbar.php';
+
+include './include/navbar.php';
+
 // Αν ο χρήστης είναι συνδεδεμένος, εμφανίζουμε τα προσωπικά του στοιχεία
 include '../connDB.php';
 
@@ -44,6 +46,6 @@ if (mysqli_num_rows($result) > 0) {
 
 mysqli_close($con);
 
-include 'footer.php';
+include './include/footer.php';
 ?>
 

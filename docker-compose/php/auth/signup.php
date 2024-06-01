@@ -1,3 +1,31 @@
+<?php
+include '../connDB.php';
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = $_POST["name"];
+  $surname = $_POST["surname"];
+  $username_input = $_POST["username"];
+  $password = $_POST["password"];
+  $email = $_POST["email"];
+  $simplepush_key = $_POST["simplepush_key"];
+
+
+
+
+$sql = "INSERT INTO users (name, surname, username, password, email, simplepushio_key) VALUES ('$name', '$surname', '$username_input', '$password', '$email', '$simplepush_key')";
+
+if (mysqli_query($con, $sql)) {
+  header("Location: login.php");
+  exit;
+} else {
+  echo "Σφάλμα εισαγωγής δεδομένων: " . mysqli_error($con);
+}
+
+mysqli_close($con);
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="el">
 
@@ -6,7 +34,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up | Trello</title>
     <link rel="icon" href="https://bxp-content-static.prod.public.atl-paas.net/img/favicon.ico">
-    <link rel="stylesheet" href="./css/signup_style.css">
+    <link rel="stylesheet" href="./styles/signup.css">
 </head>
 
 <body>
@@ -42,7 +70,7 @@
             </label><br><br>
             <input type="submit" value="Εγγραφή">
         </form>
-        <a href="index.php" id="goback">back</a>
+        <a href="../index.php" id="goback">back</a>
     </div>
 </body>
 

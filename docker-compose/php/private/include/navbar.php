@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-
+    <link rel="stylesheet" href="./include/styles/navbar-private.css">
+    <link rel="stylesheet" href="./styles/theme.css">
 </head>
 <body>
     <nav>
@@ -24,5 +24,6 @@
             <li><a href="help.php">Help</a></li>
         </ul>
     </nav>
+    <i class="bi bi-brightness-high-fill" id="dark"></i>
 </body>
 </html>

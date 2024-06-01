@@ -8,28 +8,9 @@ function info(id) {
     }
 }
 
-function filterTasks(input, tasklistId_in_db, tasklistId_in_js) {
-    var filter = input.value.toLowerCase();
-    var taskContainer = document.getElementById('task-container-' + tasklistId_in_db);
-    var tasks = taskContainer.getElementsByClassName('task');
-    var results = document.getElementsByClassName('results')[tasklistId_in_js];
-    var anyVisible = false;
-
-    for (var i = 0; i < tasks.length; i++) {
-        var title = tasks[i].getElementsByClassName('task-title')[0];
-        if (title.innerText.toLowerCase().indexOf(filter) > -1) {
-            tasks[i].style.display = "";
-            anyVisible = true;
-        } else {
-            tasks[i].style.display = "none";
-        }
-    }
-
-    results.style.display = anyVisible ? "none" : "";
-}
 
 function filterTaskLists() {
-    var input = document.querySelector('.search-bar-tasklists');
+    var input = document.querySelector('.search-tasklist');
     var filter = input.value.toLowerCase();
     var tasklistContainer = document.getElementById('tasklist-container');
     var tasklists = tasklistContainer.getElementsByClassName('tasklist-item');
@@ -46,37 +27,59 @@ function filterTaskLists() {
         }
     }
 
-    results.style.display = anyVisible ? "none" : "";
+    if(anyVisible == true){
+        results.style.display = "none";
+        tasklistContainer.style.display = "";
+        tasklistContainer.style.justifyContent = "";
+        tasklistContainer.style.alignItems = "";
+    }else{
+        tasklistContainer.style.display = "flex";
+        tasklistContainer.style.justifyContent = "center";
+        tasklistContainer.style.alignItems = "center";
+        results.style.display = "";
+    }
 }
 
-function filterTasksByTitleAndStatus(tasklistId) {
-    var titleInput = document.getElementById('task-search-bar-' + tasklistId);
-    var statusInput = document.getElementById('task-status-' + tasklistId);
-    if (!titleInput || !statusInput) return;
 
-    var titleFilter = titleInput.value.toLowerCase();
-    var statusFilter = statusInput.value.toLowerCase();
+function filterTasks(tasklistId) {
+    var input = document.getElementById('search-task-' + tasklistId);
+    var filter = input.value.toLowerCase();
+
     var taskContainer = document.getElementById('task-container-' + tasklistId);
     var tasks = taskContainer.getElementsByClassName('task');
+    
+
+    var statusInput = document.getElementById('task-status-' + tasklistId);
+    var statusFilter = statusInput.value.toLowerCase();
+
+    var results = document.getElementById('results-'+tasklistId);
     var anyVisible = false;
 
+    
     for (var i = 0; i < tasks.length; i++) {
-        var title = tasks[i].querySelector('.task-title h3').innerText.toLowerCase();
-        var status = tasks[i].querySelector('.status').innerText.toLowerCase();
-        if (title.includes(titleFilter) && (status.includes(statusFilter) || statusFilter === '')) {
+        var title = tasks[i].getElementsByClassName('task-title')[0].innerText.toLowerCase();
+        var status = tasks[i].getElementsByClassName('status')[0].innerText.toLowerCase();
+
+        // Check if the task matches the filter text and status filter
+        var matchesFilter = title.indexOf(filter) > -1;
+        var matchesStatus = statusFilter === '' || status.includes(statusFilter);
+
+        if (matchesFilter && matchesStatus) {
             tasks[i].style.display = "";
             anyVisible = true;
         } else {
             tasks[i].style.display = "none";
         }
     }
-
-    var results = document.getElementById('results');
+    if(filter == '' && statusFilter == ''){
+        anyVisible = true
+    }
     results.style.display = anyVisible ? "none" : "";
 }
 
+
 function filterAssignments() {
-    var input = document.querySelector('.search-bar-tasklists');
+    var input = document.querySelector('.search-tasklist');
     var filter = input.value.toLowerCase();
     var assignedTasklistContainer = document.getElementById('assigned-tasklist-container');
     var assignedTasklists = assignedTasklistContainer.getElementsByClassName('tasklist-item');
@@ -92,6 +95,16 @@ function filterAssignments() {
             assignedTasklists[i].style.display = "none";
         }
     }
-
-    results.style.display = anyVisible ? "none" : "";
+    if(anyVisible == true){
+        results.style.display = "none";
+        assignedTasklistContainer.style.display = "";
+        assignedTasklistContainer.style.justifyContent = "";
+        assignedTasklistContainer.style.alignItems = "";
+    }else{
+        assignedTasklistContainer.style.display = "flex";
+        assignedTasklistContainer.style.justifyContent = "center";
+        assignedTasklistContainer.style.alignItems = "center";
+        results.style.display = "";
+    }
+    
 }
