@@ -1,13 +1,25 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../login.php");
+    header("Location: ../auth/login.php");
     exit();
 }
 
 include './include/navbar.php';
 include '../connDB.php';
 $username = $_SESSION['username'];
+
+// Fetch user_id based on the username
+$sql_user = "SELECT id FROM users WHERE username = '$username'";
+$result_user = $con->query($sql_user);
+if ($result_user->num_rows == 1) {
+    $row_user = $result_user->fetch_assoc();
+    $user_id = $row_user['id'];
+} else {
+    // Handle the case where the user is not found
+    echo "User not found.";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +28,11 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasklists & Tasks</title>
-    
+    <link rel="stylesheet" href="./styles/your-board.css">
     <link rel="stylesheet" href="./styles/dashboard-theme.css">
-    <script src="dashboard.js" defer></script>
-        <!-- Bootstrap Icons -->
+    <script src="./scripts/search.js" defer></script>
+    <!-- Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
-
 </head>
 <body>
     <ul class="header">
@@ -32,8 +43,9 @@ $username = $_SESSION['username'];
         <li>
             <!-- Form to add a new task list -->
             <h2>Create a new tasklist:</h2>
-            <form action="insert_tasklist.php" method="POST" style="margin-bottom: 20px;">
+            <form action="./php_actions/insert_tasklist.php" method="POST" style="margin-bottom: 20px;">
                 <input type="text" name="title" placeholder="Enter new task list name" class="add-task-list" required>
+                <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
                 <button type="submit">Add Task List</button>
             
             <!-- Display error messages if any -->
@@ -58,7 +70,7 @@ $username = $_SESSION['username'];
     </ul>
     <?php
         $count_tasklists = 0;
-        $sql_1 = "SELECT * FROM tasklists WHERE user_name= '$username' ORDER BY id DESC";
+        $sql_1 = "SELECT * FROM tasklists WHERE user_id = '$user_id' ORDER BY id DESC";
         $result_1 = $con->query($sql_1);
         echo "<h1>Tasklists:</h1><br>";
         echo "<div class='tasklist-container' id='tasklist-container'>";
@@ -69,7 +81,7 @@ $username = $_SESSION['username'];
                 $tasklist_id = $row["id"];
                 echo    "<div class='tasklist-item' data-title='" . strtolower($row["title"]) . "'>";
                 echo    " <div class='tasklist-title'>" . $row["title"] ."</div>" . 
-                            "<form action='delete_tasklist.php' method='POST' style='display:inline-block; margin-bottom: 0px;float:right;'>
+                            "<form action='./php_actions/delete_tasklist.php' method='POST' style='display:inline-block; margin-bottom: 0px;float:right;'>
                                 <input type='hidden' name='tasklist_id' value='" . $tasklist_id . "'>
                                 <button type='submit' class='delete-button-tasklist'>x</button>
                             </form>";
@@ -86,8 +98,8 @@ $username = $_SESSION['username'];
                     $sql_2 = "SELECT t.id, t.title, t.date_time, t.status, t.assigned_to, t.tasklist_id
                               FROM tasks t
                               JOIN tasklists tl ON t.tasklist_id = tl.id
-                              WHERE tl.user_name = '$username' AND t.tasklist_id = '$tasklist_id'
-                              order by t.date_time desc";
+                              WHERE tl.user_id = '$user_id' AND t.tasklist_id = '$tasklist_id'
+                              ORDER BY t.date_time DESC";
                     $result_2 = $con->query($sql_2);
                     if ($result_2->num_rows > 0) {
                         while ($row_2 = $result_2->fetch_assoc()) {
@@ -107,7 +119,7 @@ $username = $_SESSION['username'];
                                     $row_2["assigned_to"] . 
                                 "</div>";
                             }
-                            echo "<form class ='assign-to' action='assigned_to.php' method='POST' style='display:inline-block; margin-top: 10px;'>
+                            echo "<form class ='assign-to' action='./php_actions/assigned_to.php' method='POST' style='display:inline-block; margin-top: 10px;'>
                                 <input type='hidden' name='task_id' value='" . $row_2["id"] . "'>
                                 <h4>Assign task to:</h4>
                                 <input type='text' name='assigned_to' placeholder='write a username...' class='assigned_to-searchbar'required>
@@ -115,7 +127,7 @@ $username = $_SESSION['username'];
                              </form></div>" .
 
                             "
-                            <form action='delete_task.php' method='POST' style='display:inline-block;'>
+                            <form action='./php_actions/delete_task.php' method='POST' style='display:inline-block;'>
                                 <input type='hidden' name='task_id' value='" . $row_2["id"] . "'>
                                 <button type='submit' class='delete-button'>x</button>
                              </form></div>";
@@ -125,8 +137,9 @@ $username = $_SESSION['username'];
                     }
                 echo "<div id='results-$tasklist_id' style='display: none;color:red;font-size:20px;'>0 search results</div>";
                 echo "<div class='add-task-container'>";
-                echo "<form action='insert_task.php' method='POST'>";
+                echo "<form action='./php_actions/insert_task.php' method='POST'>";
                 echo "<input type='hidden' name='tasklist_id' value='" . $tasklist_id . "'>";
+                echo "<h3>Add a new task:</h3>" ;
                 echo "<input type='text' name='title' placeholder='Add a new task...' class='add-task-bar'>";
                 echo "<label>State: </label>";
                 echo "<select name='status'>";

@@ -3,11 +3,11 @@ session_start();
 
 // Ελέγχουμε εάν ο χρήστης είναι συνδεδεμένος
 if (!isset($_SESSION['username'])) {
-    header("Location: ../login.php");
+    header("Location: ../../auth/login.php");
     exit;
 }
 
-include '../connDB.php';
+include '../../connDB.php';
 
 $username = $_SESSION['username'];
 
@@ -25,7 +25,7 @@ if (mysqli_query($con, $sql_update_user)) {
     // Αποσύνδεση του χρήστη
     unset($_SESSION['username']);
     session_destroy();
-    header("Location: ../login.php");
+    header("Location: ../../auth/login.php");
     exit;
 } else {
     echo "Σφάλμα κατά την ενημέρωση του προφίλ: " . mysqli_error($con);

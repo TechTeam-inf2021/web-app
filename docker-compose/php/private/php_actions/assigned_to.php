@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../login.php");
+    header("Location: ../../auth/login.php");
     exit();
 }
 
-include '../connDB.php';
+include '../../connDB.php';
 
 function sendSimplepushNotification($key, $title, $message) {
     $url = 'https://api.simplepush.io/send';
@@ -34,12 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $task_id = $_POST['task_id'];
     $assigned_to = $_POST['assigned_to'];
 
-    $sql_check_user = "SELECT * FROM users WHERE username='$assigned_to'";
+    // Fetch the user_id and simplepushio_key based on the username
+    $sql_check_user = "SELECT id, simplepushio_key FROM users WHERE username='$assigned_to'";
     $result_check_user = $con->query($sql_check_user);
     if ($result_check_user->num_rows > 0) {
         $user = $result_check_user->fetch_assoc();
+        $assigned_to_id = $user['id'];
         $simplepush_key = $user['simplepushio_key']; 
-        $sql_assign = "UPDATE tasks SET assigned_to='$assigned_to' WHERE id='$task_id'";
+
+        $sql_assign = "UPDATE tasks SET assigned_to='$assigned_to_id' WHERE id='$task_id'";
         if ($con->query($sql_assign) === TRUE) {
             $_SESSION['success_message'] = "Task assigned successfully.";
             $task_title = "New Task Assigned: ";
@@ -53,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $con->close();
-    header("Location: dashboard.php");
+    header("Location: ../dashboard.php");
     exit();
 }
 ?>
