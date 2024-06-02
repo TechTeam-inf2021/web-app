@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../login.php");
+    header("Location: ../../auth/login.php");
     exit();
 }
 
-include '../connDB.php';
+include '../../connDB.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tasklist_id = $_POST['tasklist_id'];
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Then delete the tasklist
         $sql_tasklist = "DELETE FROM tasklists WHERE id='$tasklist_id'";
         if ($con->query($sql_tasklist) === TRUE) {
-            header("Location: dashboard.php");
+            header("Location: ../dashboard.php");
         } else {
             echo "Error deleting tasklist: " . $con->error;
         }

@@ -7,6 +7,8 @@
     position: relative;
     /* Ensure the "X" button is positioned relative to this container */
 }
+
+
 .tasklist-item {
     background-color: #181818;
     border-radius: 8px;
@@ -186,7 +188,7 @@ select {
     color: #ddd;
     cursor: pointer;
     font-size: 20px;
-    padding: 20px;
+    padding: 10px;
 
     transition: background-color 0.3s ease;
 }
@@ -271,6 +273,6 @@ div.title-delete {
 .add-task-container{
     margin: 10px;
     padding: 30px;
-    border: 3px solid white;
+    
 }
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./styles/index-public.css">
 
     <!-- js script (dark-light mode) -->
-    <script src="./scripts/script.js" defer></script>
+    <script src="./scripts/dark_light_mode.js" defer></script>
 </head>
 <body>
     <?php include './include/navbar.php';?>

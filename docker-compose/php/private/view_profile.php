@@ -37,7 +37,7 @@ if (mysqli_num_rows($result) > 0) {
   echo "Επώνυμο: " . $row["surname"] . "<br>";
   echo "Όνομα Χρήστη: " . $row["username"] . "<br>";
   echo "Email: " . $row["email"] . "<br>";
-  echo '<form action="delete_profile.php" method="post">';
+  echo '<form action="./php_actions/delete_profile.php" method="post">';
   echo '<input type="submit" value="Διαγραφή προφίλ">';
   echo '</form>';
 } else {

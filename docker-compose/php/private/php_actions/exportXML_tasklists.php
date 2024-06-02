@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../login.php");
+    header("Location: ../../auth/login.php");
     exit();
 }
 
-include '../connDB.php';
+include '../../connDB.php';
 $username = $_SESSION['username'];
 
 // Function to convert query result to XML
@@ -16,7 +16,7 @@ function queryToXML($tasklists, $tasks) {
         $tasklistElement = $xml->addChild("Tasklist");
         $tasklistElement->addChild("ID", htmlspecialchars($tasklist['id']));
         $tasklistElement->addChild("Title", htmlspecialchars($tasklist['title']));
-        $tasklistElement->addChild("UserName", htmlspecialchars($tasklist['user_name']));
+        $tasklistElement->addChild("UserName", htmlspecialchars($tasklist['username']));
 
         if (isset($tasks[$tasklist['id']])) {
             foreach ($tasks[$tasklist['id']] as $task) {
@@ -33,40 +33,36 @@ function queryToXML($tasklists, $tasks) {
     return $xml->asXML();
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['export'] === 'assigned_tasklists') {
-    // Fetch assigned tasklists
-    $sql_assigned = "SELECT DISTINCT tl.id, tl.title, tl.user_name 
-                     FROM tasklists tl 
-                     JOIN tasks t ON tl.id = t.tasklist_id 
-                     WHERE t.assigned_to='$username' AND tl.user_name != '$username'
-                     ORDER BY tl.id DESC";
-    $result_assigned = $con->query($sql_assigned);
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['export'] === 'tasklists_tasks') {
+    // Fetch tasklists
+    $sql_1 = "SELECT * FROM tasklists WHERE user_name= '$username' ORDER BY id DESC";
+    $result_1 = $con->query($sql_1);
 
     $tasklists = [];
     $tasklist_ids = [];
-    if ($result_assigned->num_rows > 0) {
-        while ($row = $result_assigned->fetch_assoc()) {
+    if ($result_1->num_rows > 0) {
+        while ($row = $result_1->fetch_assoc()) {
             $tasklists[] = $row;
             $tasklist_ids[] = $row['id'];
         }
     }
 
-    // Fetch tasks for the assigned tasklists
+    // Fetch tasks for the tasklists
     $tasks = [];
     if (!empty($tasklist_ids)) {
         $tasklist_ids_str = implode(',', $tasklist_ids);
-        $sql_tasks = "SELECT * FROM tasks WHERE tasklist_id IN ($tasklist_ids_str) AND assigned_to='$username' ORDER BY date_time DESC";
-        $result_tasks = $con->query($sql_tasks);
+        $sql_2 = "SELECT * FROM tasks WHERE tasklist_id IN ($tasklist_ids_str) ORDER BY date_time DESC";
+        $result_2 = $con->query($sql_2);
 
-        if ($result_tasks->num_rows > 0) {
-            while ($row = $result_tasks->fetch_assoc()) {
-                $tasks[$row['tasklist_id']][] = $row;
+        if ($result_2->num_rows > 0) {
+            while ($row_2 = $result_2->fetch_assoc()) {
+                $tasks[$row_2['tasklist_id']][] = $row_2;
             }
         }
     }
 
     $xmlContent = queryToXML($tasklists, $tasks);
-    $fileName = "Assigned_Tasklists_with_Tasks.xml";
+    $fileName = "tasklists.xml";
 
     // Clear the output buffer to avoid any pre-output
     ob_clean();

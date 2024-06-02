@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../login.php");
+    header("Location: ../../auth/login.php");
     exit();
 }
 
-include '../connDB.php';
+include '../../connDB.php';
 
 
 function sendSimplepushNotification($key, $title, $message) {
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($title) || $title == null) {
         $_SESSION['error_message_task'] = "Task name cannot be empty.";
-        header("Location: dashboard.php");
+        header("Location: ../dashboard.php");
         exit();
     }
 
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($con->query($sql) === TRUE) {
         sendSimplepushNotification($key, 'Νέα Εργασία', 'Δημιουργήσατε την εργασία: ' . $title);
-        header("Location: dashboard.php");
+        header("Location: ../dashboard.php");
     } else {
         echo "Error: " . $sql . "<br>" . $con->error;
     }

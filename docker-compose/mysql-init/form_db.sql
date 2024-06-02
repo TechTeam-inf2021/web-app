@@ -6,7 +6,7 @@
 -- Χρόνος δημιουργίας: 25 Μάη 2024 στις 17:45:10
 -- Έκδοση διακομιστή: 10.4.32-MariaDB
 -- Έκδοση PHP: 8.0.30
-use di_internet_technologies_project;
+USE di_internet_technologies_project;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -33,9 +33,10 @@ DROP TABLE IF EXISTS tasklists;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     surname VARCHAR(255),
-    username VARCHAR(255) PRIMARY KEY,
+    username VARCHAR(255) UNIQUE,
     password VARCHAR(255),
     email VARCHAR(255),
     simplepushio_key VARCHAR(255)
@@ -49,15 +50,15 @@ INSERT INTO users (name, surname, username, password, email, simplepushio_key) V
 CREATE TABLE tasklists (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
-    user_name VARCHAR(255),
-    FOREIGN KEY (user_name) REFERENCES users(username)
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-INSERT INTO tasklists (title, user_name) VALUES
-('Project-1', 'johndoe1'),
-('Project-2', 'johndoe1'),
-('Project-3', 'janesmith1'),
-('Project-4', 'janesmith1');
+INSERT INTO tasklists (title, user_id) VALUES
+('Project-1', 1),
+('Project-2', 1),
+('Project-3', 2),
+('Project-4', 2);
 
 
 CREATE TABLE tasks (
@@ -65,16 +66,18 @@ CREATE TABLE tasks (
     title VARCHAR(255),
     date_time DATETIME,
     status VARCHAR(50) DEFAULT 'σε αναμονή',
-    assigned_to VARCHAR(255),
+    assigned_to INT,
     tasklist_id INT,
-    FOREIGN KEY (assigned_to) REFERENCES users(username),
+    FOREIGN KEY (assigned_to) REFERENCES users(id),
     FOREIGN KEY (tasklist_id) REFERENCES tasklists(id)
 );
 
 INSERT INTO tasks (title, date_time, status, assigned_to, tasklist_id) VALUES
-('Task 1', '2024-05-01 09:00:00', 'σε αναμονή', 'johndoe1', 3),
-('Task 2', '2024-05-01 10:00:00', 'σε εξέλιξη', 'johndoe1', 3),
-('Task 3', '2024-05-01 11:00:00', 'ολοκληρωμένη', 'janesmith1', 2),
-('Task 4', '2024-05-02 09:00:00', 'σε αναμονή', 'johndoe1', 3);
+('Task 1', '2024-05-01 09:00:00', 'σε αναμονή', 1, 3),
+('Task 2', '2024-05-01 10:00:00', 'σε εξέλιξη', 1, 3),
+('Task 3', '2024-05-01 11:00:00', 'ολοκληρωμένη', 2, 2),
+('Task 4', '2024-05-02 09:00:00', 'σε αναμονή', 1, 3);
 
-
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;

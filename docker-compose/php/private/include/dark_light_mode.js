@@ -3,8 +3,10 @@ const toggle = document.getElementById('dark');
 const body = document.querySelector('body');
 const a = document.querySelectorAll('nav ul li a');
 const navbar = document.querySelector('nav');
-const trello_logo = document.querySelector('label');
+const logo = document.querySelector('label');
 const footer = document.querySelector('footer');
+const dropdownItems = document.querySelectorAll('.dropdown li');
+const i = document.querySelector('i');
 
 
 
@@ -16,8 +18,8 @@ let color_dark_mode = "rgb(9, 30, 66)";
 let background_light_mode = "rgb(9, 30, 66)";
 let color_light_mode = "rgb(8, 217, 207)";
 
-let color =color_light_mode;
-let background =background_light_mode;
+let color = color_light_mode;
+let background = background_light_mode;
 // Check if there is a saved preference for dark mode in localStorage
 const darkModePreference = localStorage.getItem('darkMode');
     
@@ -41,47 +43,104 @@ toggle.addEventListener('click', function () {
 
 // Function to enable dark mode
 function enableDarkMode() {
+
+    // define variables
     color =color_dark_mode;
     background =background_dark_mode;  
 
-    toggle.classList.add('bi-moon');
-    body.style.background = color;
+    
 
+    
+    // main colors
+    body.style.background = color;
     body.style.color = 'rgb(211, 236, 245)';
     body.style.transition = '2s';
 
+    // icon
+    toggle.classList.add('bi-moon');
+    i.style.color = color;
+
+    //footer
+    footer.style.background = background;
+    footer.style.color = color;
+    footer.style.transition = '2s'; 
+
+
+    
+    // Navbar, logo, a, dropdown items
     navbar.style.background = background;
     navbar.style.transition = '2s';
-
-    trello_logo.style.color = color;
-    trello_logo.style.transition = '2s';
-
-
+    logo.style.color = color;
+    logo.style.transition = '2s';
     a.forEach(anchor => {
         anchor.style.color = color;
         anchor.style.transition = '2s';
     });
-    
-    footer.style.background = background;
-    footer.style.color = color;
-    footer.style.transition = '2s';    
+    dropdownItems.forEach(item => {
+        item.style.color = color;
+        item.style.background = background;
+    });
+   
+    //home
+    try{
+        const HomeImg = document.getElementById('Home-img')
+       HomeImg.style.backgroundImage = "url('../assets/home-dark.webp')";
 
+    }catch (error) {}
+
+    try{
+        const accordion_item = document.querySelectorAll('.accordion-item');
+        const accordion_header = document.querySelectorAll('.accordion-header');
+        const accordion_content = document.querySelectorAll('.accordion-content');
+
+
+        accordion_item.forEach(item => {
+            
+            item.style.background = color;
+            
+
+        });
+
+        accordion_header.forEach(item => {
+            item.style.color = background;
+            
+            
+
+        });
+        accordion_content.forEach(item => {
+            item.style.color = background;
+            
+            
+        });
+
+
+    }catch (error) {}
 
 }
 
 // Function to enable light mode
 function enableLightMode() {
-    color =color_light_mode;
-    background =background_light_mode; 
+    color = color_light_mode;
+    background = background_light_mode; 
     toggle.classList.remove('bi-moon');
+
+    i.style.color = color;
     body.style.background = 'rgb(211, 236, 245)';
     body.style.color = '#020202';
     body.style.transition = '2s';
+    
     navbar.style.background = background;
     navbar.style.transition = '2s';
 
-    trello_logo.style.color = color;
-    trello_logo.style.transition = '2s';
+    logo.style.color = color;
+    logo.style.transition = '2s';
+
+
+    dropdownItems.forEach(item => {
+        item.style.color = color;
+        item.style.background = background;
+    });
+    
     a.forEach(anchor => {
         anchor.style.color = color;
         anchor.style.transition = '2s';
@@ -90,9 +149,42 @@ function enableLightMode() {
     footer.style.background = background;
     footer.style.color = color;
     footer.style.transition = '2s';
+
     try{
-        const accordion_content = document.querySelectorAll('.accordion-content');
+        const HomeImg = document.getElementById('Home-img')
+        HomeImg.style.backgroundImage = "url('../assets/home-light.webp')";
+
     }catch (error) {}
+
+    try{
+        const accordion_item = document.querySelectorAll('.accordion-item');
+        const accordion_header = document.querySelectorAll('.accordion-header');
+        const accordion_content = document.querySelectorAll('.accordion-content');
+
+
+        accordion_item.forEach(item => {
+            
+            item.style.background = 'white';
+            
+
+        });
+
+        accordion_header.forEach(item => {
+            item.style.color = background;
+            
+            
+
+        });
+        accordion_content.forEach(item => {
+            item.style.color = background;
+            
+            
+        });
+
+
+    }catch (error) {}
+
+
 }
 
 
