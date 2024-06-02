@@ -7,11 +7,11 @@
     <link rel="icon" href="https://bxp-content-static.prod.public.atl-paas.net/img/favicon.ico">
     
     
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./styles/theme.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <?php include 'navbar.php';?>
+    <?php include './include/navbar.php';?>
     <header>
         <h1>Συχνές Ερωτήσεις</h1>
     </header>
@@ -31,6 +31,6 @@
             </div>
         </div>
     </section>
-    <?php include 'footer.php'; ?>
+    <?php include './include/footer.php'; ?>
 </body>
 </html>

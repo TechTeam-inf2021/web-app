@@ -7,7 +7,7 @@
     <link rel="icon" href="https://bxp-content-static.prod.public.atl-paas.net/img/favicon.ico">
     
     
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./include/styles/navbar-public.css">
     <script src="./JS/script.js" defer></script>
 </head>
 <body>
@@ -18,9 +18,10 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="help.php">Help</a></li>
-            <li><a href="login.php">login</a>
-            <a href="signup.html">sign-up</a></li>
+            <li><a href="./auth/login.php">login</a>
+            <a href="./auth/signup.php">sign-up</a></li>
         </ul>
     </nav>
+    <i class="bi bi-brightness-high-fill" id="dark"></i>
 </body>
 </html>

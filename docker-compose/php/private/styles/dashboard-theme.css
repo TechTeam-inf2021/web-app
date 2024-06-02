@@ -7,21 +7,17 @@
     position: relative;
     /* Ensure the "X" button is positioned relative to this container */
 }
-
 .tasklist-item {
-    margin-right: 10px;
+    background-color: #181818;
+    border-radius: 8px;
+    border: none;
+    color: #ddd;
     display: inline-block;
+    margin-right: 10px;
     max-width: 400px;
     padding: 10px;
-    border: none;
-    vertical-align: top;
-    background-color: #181818;
-    /* Dark background similar to the second image */
-    border-radius: 8px;
-    color: #ddd;
-    /* Light text color for better contrast */
     position: relative;
-    /* Ensure the "X" button is positioned relative to this container */
+    vertical-align: top;
 }
 
 .tasklist-title {
@@ -34,7 +30,7 @@
     /* Center the title text */
 }
 
-.search-bar {
+.search-task {
     width: 70%;
     box-sizing: border-box;
     padding: 5px;
@@ -47,13 +43,16 @@
     margin-bottom: 10px;
 }
 
-.search-bar:focus,
+.search-task:focus,
 .add-task-list:focus,
-.search-bar-tasklists:focus,
+.search-tasklist:focus,
 .assigned_to-searchbar:focus,
 .add-task-bar:focus {
     outline: none;
 }
+
+
+
 
 .tasklist-container {
     display: flex;
@@ -68,6 +67,8 @@
     color: white;
     background-color: rgb(34, 57, 95);
     border-radius: 8px;
+
+
 }
 
 .task-container {
@@ -131,7 +132,7 @@
 }
 
 .add-task-list,
-.search-bar-tasklists {
+.search-tasklist {
     height: 40px;
     padding: 15px;
     margin-top: 4px;
@@ -161,16 +162,16 @@ form.assign-to input[placeholder] {
 
 button {
     background-color: rgba(30, 30, 30, 0);
-    color: rgb(255, 255, 255);
+    border-radius: 4px;
     border: 4px solid rgb(59, 59, 59);
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
@@ -179,18 +180,22 @@ button:hover {
 }
 
 select {
-    padding: 5px;
-    border: 1px solid #444;
-    border-radius: 4px;
     background-color: #333;
+    border-radius: 4px;
+    border: 1px solid #444;
     color: #ddd;
     cursor: pointer;
+    font-size: 20px;
+    padding: 20px;
+
     transition: background-color 0.3s ease;
 }
 
 select:hover {
     background-color: #444;
+    
 }
+
 
 ul.header {
     list-style-type: none;
@@ -198,7 +203,6 @@ ul.header {
     margin: 0;
     display: flex;
     align-items: flex-start;
-    color: #ddd;
     /* Matching text color */
 }
 
@@ -206,10 +210,7 @@ ul.header li {
     margin-left: 40px;
 }
 
-#results {
-    color: red;
-    font-size: 30px;
-}
+
 
 /* Additional styles for the "+" button and card addition */
 .add-card {
@@ -266,42 +267,10 @@ div.title-delete {
 }
 
 
-/* Additional Styles */
-.accordion {
-    width: 80%;
-    margin: 0 auto;
-    color: #020202;
+
+.add-task-container{
+    margin: 10px;
+    padding: 30px;
+    border: 3px solid white;
 }
 
-.accordion-item {
-    margin: 10px 0;
-}
-
-.accordion-header {
-    color: #020202;
-    background-color: #f1f1f1;
-    cursor: pointer;
-    padding: 10px;
-    border: none;
-    outline: none;
-    width: 100%;
-    text-align: left;
-    font-size: 18px;
-}
-
-.accordion-content {
-    display: none;
-    padding: 10px;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-}
-
-.accordion-header span {
-    font-size: 50px;
-    float: right;
-    margin-right: 10px;
-}
-
-header h1 {
-    font-size: 60px;
-}

@@ -43,15 +43,7 @@ CREATE TABLE users (
 
 INSERT INTO users (name, surname, username, password, email, simplepushio_key) VALUES
 ('John', 'Doe', 'johndoe1', 'password1', 'johndoe1@example.com', 'Hza3j3'),
-('Jane', 'Smith', 'janesmith1', 'password2', 'janesmith1@example.com', '73utPa'),
-('Alice', 'Johnson', 'alicejohnson1', 'password3', 'alicejohnson1@example.com', 'key3'),
-('Bob', 'Brown', 'bobbrown1', 'password4', 'bobbrown1@example.com', 'key4'),
-('Charlie', 'Davis', 'charliedavis1', 'password5', 'charliedavis1@example.com', 'key5'),
-('Eve', 'Miller', 'evemiller1', 'password6', 'evemiller1@example.com', 'key6'),
-('Frank', 'Wilson', 'frankwilson1', 'password7', 'frankwilson1@example.com', 'key7'),
-('Grace', 'Moore', 'gracemoore1', 'password8', 'gracemoore1@example.com', 'key8'),
-('Hank', 'Taylor', 'hanktaylor1', 'password9', 'hanktaylor1@example.com', 'key9'),
-('Ivy', 'Anderson', 'ivyanderson1', 'password10', 'ivyanderson1@example.com', 'key10');
+('Jane', 'Smith', 'janesmith1', 'password2', 'janesmith1@example.com', '73utPa');
 
 
 CREATE TABLE tasklists (
@@ -62,23 +54,10 @@ CREATE TABLE tasklists (
 );
 
 INSERT INTO tasklists (title, user_name) VALUES
-('Project Alpha', 'johndoe1'),
-('Project Alpha', 'johndoe1'),
-('Project Alpha', 'johndoe1'),
-('Project Alpha', 'johndoe1'),
-('Project Alpha', 'johndoe1'),
-('Project Alpha', 'johndoe1'),
-('Project Alpha', 'johndoe1'),
-('Project Alpha', 'johndoe1'),
-('Project Beta', 'janesmith1'),
-('Project Gamma', 'alicejohnson1'),
-('Project Delta', 'bobbrown1'),
-('Project Epsilon', 'charliedavis1'),
-('Project Alpha - Phase 2', 'johndoe1'),
-('Project Beta - Phase 2', 'janesmith1'),
-('Project Gamma - Phase 2', 'alicejohnson1'),
-('Project Delta - Phase 2', 'bobbrown1'),
-('Project Epsilon - Phase 2', 'charliedavis1');
+('Project-1', 'johndoe1'),
+('Project-2', 'johndoe1'),
+('Project-3', 'janesmith1'),
+('Project-4', 'janesmith1');
 
 
 CREATE TABLE tasks (
@@ -93,30 +72,9 @@ CREATE TABLE tasks (
 );
 
 INSERT INTO tasks (title, date_time, status, assigned_to, tasklist_id) VALUES
-('Task 1', '2024-05-01 09:00:00', 'σε αναμονή', 'alicejohnson1', 1),
-('Task 2', '2024-05-01 10:00:00', 'σε εξέλιξη', 'johndoe1', 1),
-('Task 3', '2024-05-01 11:00:00', 'ολοκληρωμένη', 'johndoe1', 1),
-('Task 4', '2024-05-02 09:00:00', 'σε αναμονή', 'alicejohnson1', 1),
-('Task 5', '2024-05-02 10:00:00', 'σε εξέλιξη', 'johndoe1', 1),
-('Task 6', '2024-05-02 11:00:00', 'ολοκληρωμένη', 'johndoe1', 1),
-('Task 7', '2024-05-03 09:00:00', 'σε αναμονή', 'johndoe1', 1),
-('Task 8', '2024-05-03 10:00:00', 'σε εξέλιξη', 'alicejohnson1', 1),
-('Task 9', '2024-05-03 11:00:00', 'ολοκληρωμένη', 'johndoe1', 1),
-('Task 10', '2024-05-04 09:00:00', 'σε αναμονή', 'johndoe1', 1),
-('Task 11', '2024-05-04 10:00:00', 'σε εξέλιξη', 'alicejohnson1', 1),
-('Task 12', '2024-05-04 11:00:00', 'ολοκληρωμένη', 'johndoe1', 1),
-('Task 13', '2024-05-05 09:00:00', 'σε αναμονή', 'johndoe1', 6),
-('Task 14', '2024-05-05 10:00:00', 'σε εξέλιξη', 'johndoe1', 6),
-('Task 15', '2024-05-05 11:00:00', 'ολοκληρωμένη', 'alicejohnson1', 6),
-('Task 16', '2024-05-06 09:00:00', 'σε αναμονή', 'alicejohnson1', 6),
-('Task 17', '2024-05-06 10:00:00', 'σε εξέλιξη', 'alicejohnson1', 6),
-('Task 18', '2024-05-06 11:00:00', 'ολοκληρωμένη', 'johndoe1', 6),
-('Task 19', '2024-05-07 09:00:00', 'σε αναμονή', 'johndoe1', 6),
-('Task 20', '2024-05-07 10:00:00', 'σε εξέλιξη', 'johndoe1', 6);
+('Task 1', '2024-05-01 09:00:00', 'σε αναμονή', 'johndoe1', 3),
+('Task 2', '2024-05-01 10:00:00', 'σε εξέλιξη', 'johndoe1', 3),
+('Task 3', '2024-05-01 11:00:00', 'ολοκληρωμένη', 'janesmith1', 2),
+('Task 4', '2024-05-02 09:00:00', 'σε αναμονή', 'johndoe1', 3);
 
 
--- Add an index on the assigned_to column in the tasks table to speed up queries on this column
-CREATE INDEX idx_assigned_to ON tasks(assigned_to);
-
--- Add an index on the user_name column in the tasklists table to speed up queries on this column
-CREATE INDEX idx_user_name ON tasklists(user_name);

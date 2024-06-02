@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'connDB.php';
+include '../connDB.php';
 
 // Initialize variables
 if (!isset($_SESSION['error_msg'])) {
@@ -54,7 +54,7 @@ mysqli_close($con);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Trello</title>
     <link rel="icon" href="https://bxp-content-static.prod.public.atl-paas.net/img/favicon.ico">
-    <link rel="stylesheet" href="./css/login_style.css">
+    <link rel="stylesheet" href="./styles/login.css">
 </head>
 <body>
     <div class="login-container">
@@ -76,6 +76,6 @@ mysqli_close($con);
     $_SESSION['insert_username'] = "";
     $_SESSION['insert_password'] = "";
     ?>
-    <a href="index.php" id="goback">back</a>
+    <a href="../index.php" id="goback">back</a>
 </body> 
 </html>

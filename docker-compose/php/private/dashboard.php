@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-include 'navbar.php';
+include './include/navbar.php';
 include '../connDB.php';
 $username = $_SESSION['username'];
 ?>
@@ -16,8 +16,8 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasklists & Tasks</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./css/style.css">
+    
+    <link rel="stylesheet" href="./styles/dashboard-theme.css">
     <script src="dashboard.js" defer></script>
         <!-- Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@ $username = $_SESSION['username'];
     <ul class="header">
         <li>
             <h2>Search tasklist:</h2>
-            <input type="text" placeholder="Search task lists..." class="search-bar-tasklists" onkeyup="filterTaskLists()" style="margin-bottom: 20px;">
+            <input type="text" placeholder="Search task lists..." class="search-tasklist" onkeyup="filterTaskLists()" style="margin-bottom: 20px;">
         </li>
         <li>
             <!-- Form to add a new task list -->
@@ -44,8 +44,13 @@ $username = $_SESSION['username'];
             }
             
             if (isset($_SESSION['error_message_task'])) {
-                echo "<p style='color: red;text-align:center;font-size:3em;'>" . $_SESSION['error_message_task'] . "</p>";
+                echo "<p style='color: red;text-align:center;font-size:1em;'>" . $_SESSION['error_message_task'] . "</p>";
                 unset($_SESSION['error_message_task']); // Clear the error message after displaying it
+            }
+
+            if (isset($_SESSION['success_message'])) {
+                echo "<p style='color: green;'>" . $_SESSION['success_message'] . "</p>";
+                unset($_SESSION['success_message']); // Clear the error message after displaying it
             }
             ?>
             </form>
@@ -68,13 +73,14 @@ $username = $_SESSION['username'];
                                 <input type='hidden' name='tasklist_id' value='" . $tasklist_id . "'>
                                 <button type='submit' class='delete-button-tasklist'>x</button>
                             </form>";
-                echo "<div><input type='text' placeholder='Search tasks...' class='search-bar' onkeyup='filterTasks(this, $tasklist_id,$count_tasklists)'></div>";
-                echo "<select id='task-status-$tasklist_id' onchange='filterTasksByTitleAndStatus($tasklist_id)'>";
-                    echo "<option value=''>All statuses</option>";
-                    echo "<option value='σε αναμονή'>σε αναμονή</option>";
-                    echo "<option value='σε εξέλιξη'>σε εξέλιξη</option>";
-                    echo "<option value='ολοκληρωμένη'>ολοκληρωμένη</option>";
+                echo "<div><input type='text' placeholder='Search tasks...' class='search-task' id='search-task-$tasklist_id' onkeyup='filterTasks($tasklist_id)'></div>";
+                echo "<select id='task-status-$tasklist_id' onchange='filterTasks($tasklist_id)'>";
+                echo "<option value=''>All statuses</option>";
+                echo "<option value='σε αναμονή'>σε αναμονή</option>";
+                echo "<option value='σε εξέλιξη'>σε εξέλιξη</option>";
+                echo "<option value='ολοκληρωμένη'>ολοκληρωμένη</option>";
                 echo "</select>";
+
                 
                 echo "<div class='task-container' id='task-container-$tasklist_id'>";
                     $sql_2 = "SELECT t.id, t.title, t.date_time, t.status, t.assigned_to, t.tasklist_id
@@ -117,7 +123,8 @@ $username = $_SESSION['username'];
                             $count++;
                         }
                     }
-                echo "<div id='results' style='display: none;'>no search results</div>";
+                echo "<div id='results-$tasklist_id' style='display: none;color:red;font-size:20px;'>0 search results</div>";
+                echo "<div class='add-task-container'>";
                 echo "<form action='insert_task.php' method='POST'>";
                 echo "<input type='hidden' name='tasklist_id' value='" . $tasklist_id . "'>";
                 echo "<input type='text' name='title' placeholder='Add a new task...' class='add-task-bar'>";
@@ -129,17 +136,21 @@ $username = $_SESSION['username'];
                 echo "</select>";
                 echo "<button class='add_task' type='submit'>+</button>";
                 echo "</form>";
-
+                echo "</div>";
                 echo "</div>";
                 echo "</div>";
             }
+            $count_tasklists++;
+            echo "<div class='center'>";
+            echo "<div id='results' style='display: none;color:red;font-size:20px;'>no search results</div>";
+            echo "</div>";
             echo "</div>";
         } else {
             echo "You have 0 Tasklists";
         }
-        echo "<div id='results' style='display: none;'>no search results</div>";
+        echo "<div class='results' style='display: none;color:red;font-size:20px;'>no search results</div>";
         echo "</div>";
-    include 'footer.php';
+    include './include/footer.php';
     ?>
 
 </body>
