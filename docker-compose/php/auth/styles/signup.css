@@ -93,3 +93,15 @@ body {
 #goback:hover {
     background-color: #777;
 }
+
+
+.err_msg{
+    color: red;
+    display: none;
+    position: absolute;
+    top: 180px;
+    font-size: 30px;
+    margin-left: auto;
+    margin-bottom: 10px;
+
+}

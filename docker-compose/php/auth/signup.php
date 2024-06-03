@@ -1,30 +1,40 @@
 <?php
 include '../connDB.php';
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-  $name = $_POST["name"];
-  $surname = $_POST["surname"];
-  $username_input = $_POST["username"];
-  $password = $_POST["password"];
-  $email = $_POST["email"];
-  $simplepush_key = $_POST["simplepush_key"];
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["name"];
+    $surname = $_POST["surname"];
+    $username_input = $_POST["username"];
+    $password = $_POST["password"];
+    $email = $_POST["email"];
+    $simplepush_key = $_POST["simplepush_key"];
 
+    // Use prepared statements to prevent SQL injection
+    $stmt = $con->prepare("INSERT INTO users (name, surname, username, password, email, simplepushio_key) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $name, $surname, $username_input, $password, $email, $simplepush_key);
 
+    // Execute the query and check for errors
+    if ($stmt->execute()) {
+        header("Location: login.php");
+        exit;
+    } else {
+        if ($stmt->errno == 1062) { // Duplicate entry error
+            if (strpos($stmt->error, 'username') !== false) {
+                echo "<div class='err_msg' style='display:inline;'>username already taken</div>";
+            } elseif (strpos($stmt->error, 'email') !== false) {
+                echo "<div class='err_msg' style='display:inline;'>email already taken</div>";
+            } elseif (strpos($stmt->error, 'simplepushio_key') !== false) {
+                echo "<div class='err_msg' style='display:inline;'>Simplepush.io key already taken</div>";
+            }
+        } else {
+            echo "<div class='err_msg'>Σφάλμα εισαγωγής δεδομένων: " . $stmt->error . "</div>";
+        }
+    }
 
-$sql = "INSERT INTO users (name, surname, username, password, email, simplepushio_key) VALUES ('$name', '$surname', '$username_input', '$password', '$email', '$simplepush_key')";
-
-if (mysqli_query($con, $sql)) {
-  header("Location: login.php");
-  exit;
-} else {
-  echo "Σφάλμα εισαγωγής δεδομένων: " . mysqli_error($con);
+    $stmt->close();
+    mysqli_close($con);
 }
-
-mysqli_close($con);
-}
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="el">
@@ -67,7 +77,7 @@ mysqli_close($con);
                 <input type="text" id="simplepush_key" name="simplepush_key">
             </div>
             <label style="width: 100%; text-align: center;">
-                <input type="checkbox" name="terms"> Συμφωνώ με τους όρους και προϋποθέσεις
+                <input type="checkbox" name="terms" required> Συμφωνώ με τους όρους και προϋποθέσεις
             </label><br><br>
             <input type="submit" value="Εγγραφή">
         </form>
