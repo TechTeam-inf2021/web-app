@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="accordion-item">
-                <button class="accordion-header">Πώς διαγράφω το profile ; <span><img src='arrows.svg'></span></button>
+                <button class="accordion-header">Πώς διαγράφω το profile; <span><img src='arrows.svg'></span></button>
                 <div class="accordion-content">
                     <p>Για να διαγράψετε το profile σας θα πρέπει να κατευθυνθείτε στην ενότητα "Profile", έπειτα κάτω από τα στοιχεία σας εμφανίζεται επίσης ένα κουμπί με όνομα "διαγραφή profile", κάνετε click στο κουμπί και διαγράφετε επιτυχώς το profile σας.</p>
                 </div>

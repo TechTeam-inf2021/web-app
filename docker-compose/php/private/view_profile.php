@@ -15,14 +15,6 @@ include '../connDB.php';
 
 $username = $_SESSION['username'];
 
-function generateRandomString($length = 10) {
-  return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
-}
-
-$random_username = generateRandomString(10);
-$random_email = generateRandomString(5) . '@example.com';
-$random_password = password_hash(generateRandomString(12), PASSWORD_DEFAULT);
-
 $sql = "SELECT * FROM users WHERE username = '$username'";
 $result = mysqli_query($con, $sql);
 
@@ -32,14 +24,22 @@ if (!$result) {
 
 if (mysqli_num_rows($result) > 0) {
   $row = mysqli_fetch_assoc($result);
+  echo '<div class="profile-container">';
   echo "<h2>Προφίλ Χρήστη</h2>";
   echo "Όνομα: " . $row["name"] . "<br>";
   echo "Επώνυμο: " . $row["surname"] . "<br>";
   echo "Όνομα Χρήστη: " . $row["username"] . "<br>";
   echo "Email: " . $row["email"] . "<br>";
-  echo '<form action="./php_actions/delete_profile.php" method="post">';
+  echo '<div class="form-container">';
+  echo '<form action="./php_actions/logout.php" method="post" onsubmit="return submitForm_logout(this, \'' . $row["username"] . '\');">';
+  echo '<input type="submit" value="logout">';
+  echo '</form>';
+  echo '<form action="./php_actions/delete_profile.php" method="post" onsubmit="return submitForm_delete_user(this, \'' . $row["username"] . '\');">';
   echo '<input type="submit" value="Διαγραφή προφίλ">';
   echo '</form>';
+
+  echo '</div>';
+  echo '</div>';
 } else {
   echo "Δεν βρέθηκαν στοιχεία χρήστη.";
 }

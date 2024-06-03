@@ -77,32 +77,27 @@ function enableDarkMode() {
     });
 
    
-    //home
-    try{
-        const HomeImg = document.getElementById('Home-img')
-       
-
-    }catch (error) {}
 
     try{
+        const accordion_item = document.querySelectorAll('.accordion-item');
         const accordion_header = document.querySelectorAll('.accordion-header');
         const accordion_content = document.querySelectorAll('.accordion-content');
-        
+        const imgSVG = document.querySelectorAll("span > img");
+        imgSVG.forEach(item => {
+            item.src= '../assets/arrows-dark.svg';
+        });
 
+        accordion_item.forEach(item => {
+            item.style.background = color;
+            item.style.boxShadow = '0px 0px 10px 0px rgb(8, 217, 207)';
+        });
         accordion_header.forEach(item => {
             item.style.color = background;
-            item.style.border = "2px solid " + background;
-            item.style.background = color;
-
         });
         accordion_content.forEach(item => {
             item.style.color = background;
-            item.style.border = "2px solid " + background;
-            item.style.background = color;
         });
-
     }catch (error) {}
-
 }
 
 // Function to enable light mode
@@ -132,28 +127,37 @@ function enableLightMode() {
     footer.style.color = color;
     footer.style.transition = '2s';
     
-try{
-        const HomeImg = document.getElementById('Home-img')
-        
 
-    }catch (error) {}
 
-    try{
+     try{
+        const accordion_item = document.querySelectorAll('.accordion-item');
         const accordion_header = document.querySelectorAll('.accordion-header');
         const accordion_content = document.querySelectorAll('.accordion-content');
-        
-        const path = document.getElementById('svgpath');
-        path.setAttribute('fill', color);  // Change to red color
-        
+
+        const imgSVG = document.querySelectorAll("span > img");
+        imgSVG.forEach(item => {
+            item.src= '../assets/arrows-light.svg';
+        });
+
+        accordion_item.forEach(item => {
+            
+            item.style.background = "white";
+            item.style.boxShadow = '';
+
+        });
+
         accordion_header.forEach(item => {
             item.style.color = background;
-            item.style.border = "2px solid black";
-            item.style.background = "rgb(211, 236, 245)";
+            
+            
+
         });
         accordion_content.forEach(item => {
             item.style.color = background;
-            item.style.background = color;
+            
+            
         });
+
 
     }catch (error) {}
 

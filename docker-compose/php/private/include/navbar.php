@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./include/styles/navbar-private.css">
     <link rel="stylesheet" href="./styles/theme.css">
+    <link rel="stylesheet" href="./styles/profile.css">
+    <script src="./include/sweetalert.min.js" defer></script>
      <script src="./include/dark_light_mode.js" defer></script>
+     <script src="./include/popup.js" defer></script>
 </head>
 <body>
     <nav>

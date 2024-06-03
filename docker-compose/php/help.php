@@ -21,13 +21,13 @@
     <section id="help-section">
         <div class="accordion">
           <div class="accordion-item">
-                <button class="accordion-header">Πώς κάνω εγγραφή στο site;<span><img src='../assets/arrows.svg'></span></button>
+                <button class="accordion-header">Πώς κάνω εγγραφή στο site;<span><img src='../assets/arrows-light.svg'></span></button>
                 <div class="accordion-content">
                     <p>Για να κάνετε εγγραφή στο site, αρχικά πατάτε την επιλογή "sign-up", έπειτα συμπληρώνεται τα απαραίτητα πεδία, το username σας πρέπει να είναι έως 12 χαρακτήρες και ο κωδικός σας έως 16.</p>
                 </div>
             </div>
             <div class="accordion-item">
-                <button class="accordion-header">Πώς χρησιμοποιώ το SimplePush key; <span><img src='../assets/arrows.svg'></span></button>
+                <button class="accordion-header">Πώς χρησιμοποιώ το SimplePush key; <span><img src='../assets/arrows-light.svg'></span></button>
                 <div class="accordion-content">
                     <p>Κατά την εγγραφή σας θα πρέπει να συμπληρώσετε το πεδίο "Simplepush.io Key", το Simplepush.io Key είναι ο αριθμός από την εφαρμογή SimplePush, κατεβάζοντας την εφαρμογή σε android ή ios σύστημα, σας δίνεται η δυνατότητα να λαμβάνεται μήνυμα επιβεβαίωσης κατά την διάρκεια που χρησιμοποιείτε τις δυνατότητες του site.</p>
                 </div>
