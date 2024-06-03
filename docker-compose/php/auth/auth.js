@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             usernameInput.setCustomValidity('');
         }
     });
-
+ψλεαρ
     passwordInput.addEventListener('input', function() {
         if (passwordInput.value.length > 16) {
             passwordInput.setCustomValidity('Ο κωδικός πρέπει να είναι έως 16 χαρακτήρες');
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     simplepushKeyInput.addEventListener('input', function() {
-        if (simplepushKeyInput.value.length > 6) {
-            simplepushKeyInput.setCustomValidity('Το Simplepush.io Key πρέπει να είναι έως 6 χαρακτήρες');
+        if (simplepushKeyInput.value.length != 6) {
+            simplepushKeyInput.setCustomValidity('Το Simplepush.io Key πρέπει να είναι ακριβώς 6 χαρακτήρες');
         } else {
             simplepushKeyInput.setCustomValidity('');
         }
@@ -34,3 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+windows.onload=function() {
+    const err_msg = document.querySelector('.err_msg');
+    err_msg.style.display = 'none';
+}

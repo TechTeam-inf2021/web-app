@@ -38,13 +38,14 @@ CREATE TABLE users (
     surname VARCHAR(255),
     username VARCHAR(255) UNIQUE,
     password VARCHAR(255),
-    email VARCHAR(255),
-    simplepushio_key VARCHAR(255)
+    email VARCHAR(255) UNIQUE,
+    simplepushio_key VARCHAR(255) UNIQUE
 );
 
+
 INSERT INTO users (name, surname, username, password, email, simplepushio_key) VALUES
-('John', 'Doe', 'johndoe1', 'password1', 'johndoe1@example.com', 'Hza3j3'),
-('Jane', 'Smith', 'janesmith1', 'password2', 'janesmith1@example.com', '73utPa');
+('John', 'Doe', 'johndoe1', 'password1', 'johndoe1@example.com', 'axdfsd'),
+('Nikolas', 'Anagnostopoulos', 'Nkanagno', 'password2', 'janesmith1@example.com', '62uAUL');
 
 
 CREATE TABLE tasklists (
