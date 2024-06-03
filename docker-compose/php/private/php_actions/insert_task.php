@@ -42,6 +42,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date_time = date('Y-m-d H:i:s');
     $status = $_POST['status'];
 
+   $sql_user = "SELECT id FROM users WHERE username = '$username'";
+   $result_user = $con->query($sql_user);
+   if ($result_user->num_rows == 1) {
+    $row_user = $result_user->fetch_assoc();
+    $user_id = $row_user['id'];
+   } else {
+    // Handle the case where the user is not found
+    echo "User not found.";
+    exit();
+   }
+
     if (empty($title) || $title == null) {
         $_SESSION['error_message_task'] = "Task name cannot be empty.";
         header("Location: ../dashboard.php");
@@ -58,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $sql = "INSERT INTO tasks (title, date_time, status, assigned_to, tasklist_id) 
-            VALUES ('$title', '$date_time', '$status', null, '$tasklist_id')";
+            VALUES ('$title', '$date_time', '$status', '$user_id', '$tasklist_id')";
 
     if ($con->query($sql) === TRUE) {
         sendSimplepushNotification($key, 'Νέα Εργασία', 'Δημιουργήσατε την εργασία: ' . $title);
