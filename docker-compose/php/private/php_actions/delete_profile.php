@@ -21,10 +21,11 @@ if ($result_user->num_rows == 1) {
     echo "User not found.";
     exit();
 }
+
+// random set name-surname-email-username to random strings when pressed delete
 function generateRandomString($length = 10) {
     return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 }
-
 $random_name = generateRandomString(10);
 $random_surname = generateRandomString(10);
 $random_email = generateRandomString(5) . '@example.com';
