@@ -161,7 +161,9 @@ form.assign-to input[placeholder] {
     color: #ddd;
     /* Light text color */
 }
-
+.add-task-bar {
+    height: 40px;
+}
 button {
     background-color: rgba(30, 30, 30, 0);
     border-radius: 4px;
@@ -178,7 +180,7 @@ button {
 }
 
 button:hover {
-    background-color: rgb(8, 217, 207);
+    background-color: rgb(7, 112, 169);
 }
 
 select {
@@ -214,16 +216,8 @@ ul.header li {
 
 
 
-/* Additional styles for the "+" button and card addition */
-.add-card {
-    color: #ddd;
-    cursor: pointer;
-    margin-top: 10px;
-}
 
-.add-card:hover {
-    color: #fff;
-}
+
 
 .delete-button,
 .delete-button-tasklist {
@@ -272,7 +266,29 @@ div.title-delete {
 
 .add-task-container{
     margin: 10px;
-    padding: 30px;
-    
+    padding: 20px;
+    margin-right: 40px;
 }
 
+.add_task{
+    position: absolute;
+    right: 10px;
+    bottom: 60px;
+    font-size: 35px;
+}
+
+button.add_tasklist{
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 900;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    background-color: rgb(7, 112, 169);
+    transition: 0.5s;
+    border: none;
+}
+button.add_tasklist:hover {
+background-color: rgb(6, 127, 192);
+transition: 0.5s;
+}

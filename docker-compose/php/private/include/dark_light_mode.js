@@ -80,7 +80,15 @@ function enableDarkMode() {
         item.style.color = color;
         item.style.background = background;
     });
-   
+    
+    try{
+        const profile_container = document.getElementsByClassName('profile-container');
+        for (let i = 0; i < profile_container.length; i++) {
+            profile_container[i].style.color = 'black';
+        }
+
+    }catch (error) {}
+
     //home
     try{
         const HomeImg = document.getElementById('Home-img')
@@ -88,32 +96,25 @@ function enableDarkMode() {
 
     }catch (error) {}
 
-    try{
+     try{
         const accordion_item = document.querySelectorAll('.accordion-item');
         const accordion_header = document.querySelectorAll('.accordion-header');
         const accordion_content = document.querySelectorAll('.accordion-content');
-
+        const imgSVG = document.querySelectorAll("span > img");
+        imgSVG.forEach(item => {
+            item.src= '../assets/arrows-dark.svg';
+        });
 
         accordion_item.forEach(item => {
-            
             item.style.background = color;
-            
-
+            item.style.boxShadow = '0px 0px 10px 0px rgb(8, 217, 207)';
         });
-
         accordion_header.forEach(item => {
-            item.style.color = background;
-            
-            
-
+            item.style.color = "rgb(211, 236, 245)";
         });
         accordion_content.forEach(item => {
-            item.style.color = background;
-            
-            
+            item.style.color = "rgb(211, 236, 245)";
         });
-
-
     }catch (error) {}
 
 }
@@ -156,16 +157,20 @@ function enableLightMode() {
 
     }catch (error) {}
 
-    try{
+     try{
         const accordion_item = document.querySelectorAll('.accordion-item');
         const accordion_header = document.querySelectorAll('.accordion-header');
         const accordion_content = document.querySelectorAll('.accordion-content');
 
+        const imgSVG = document.querySelectorAll("span > img");
+        imgSVG.forEach(item => {
+            item.src= '../../assets/arrows-light.svg';
+        });
 
         accordion_item.forEach(item => {
             
-            item.style.background = 'white';
-            
+            item.style.background = "white";
+            item.style.boxShadow = '';
 
         });
 

@@ -46,7 +46,7 @@ if ($result_user->num_rows == 1) {
             <form action="./php_actions/insert_tasklist.php" method="POST" style="margin-bottom: 20px;">
                 <input type="text" name="title" placeholder="Enter new task list name" class="add-task-list" required>
                 <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-                <button type="submit">Add Task List</button>
+                <button class="add_tasklist" type="submit">Add Task List</button>
             
             <!-- Display error messages if any -->
             <?php
@@ -95,10 +95,10 @@ if ($result_user->num_rows == 1) {
 
                 
                 echo "<div class='task-container' id='task-container-$tasklist_id'>";
-                    $sql_2 = "SELECT t.id, t.title, t.date_time, t.status, t.assigned_to, t.tasklist_id
+                    $sql_2 = "SELECT t.id, t.title, t.date_time, t.status, u.username AS assigned_to_username, t.tasklist_id
                               FROM tasks t
-                              JOIN tasklists tl ON t.tasklist_id = tl.id
-                              WHERE tl.user_id = '$user_id' AND t.tasklist_id = '$tasklist_id'
+                              LEFT JOIN users u ON t.assigned_to = u.id
+                              WHERE t.tasklist_id = '$tasklist_id'
                               ORDER BY t.date_time DESC";
                     $result_2 = $con->query($sql_2);
                     if ($result_2->num_rows > 0) {
@@ -114,15 +114,15 @@ if ($result_user->num_rows == 1) {
                             "<div class='status'><div>Current status:</div>" . 
                                 $row_2["status"] . 
                             "</div>";
-                            if($row_2["assigned_to"] != null){
+                            if($row_2["assigned_to_username"] != null){
                                 echo "<div class='status'><div>Assigned to:</div>" . 
-                                    $row_2["assigned_to"] . 
+                                    $row_2["assigned_to_username"] . 
                                 "</div>";
                             }
                             echo "<form class ='assign-to' action='./php_actions/assigned_to.php' method='POST' style='display:inline-block; margin-top: 10px;'>
                                 <input type='hidden' name='task_id' value='" . $row_2["id"] . "'>
                                 <h4>Assign task to:</h4>
-                                <input type='text' name='assigned_to' placeholder='write a username...' class='assigned_to-searchbar'required>
+                                <input type='text' name='assigned_to' placeholder='write a username...' class='assigned_to-searchbar' required>
                                 <button type='submit'>Assign</button>
                              </form></div>" .
 
@@ -141,12 +141,14 @@ if ($result_user->num_rows == 1) {
                 echo "<input type='hidden' name='tasklist_id' value='" . $tasklist_id . "'>";
                 echo "<h3>Add a new task:</h3>" ;
                 echo "<input type='text' name='title' placeholder='Add a new task...' class='add-task-bar'>";
+                echo "<span>";
                 echo "<label>State: </label>";
                 echo "<select name='status'>";
                     echo "<option value='σε αναμονή'>σε αναμονή</option>";
                     echo "<option value='σε εξέλιξη'>σε εξέλιξη</option>";
                     echo "<option value='ολοκληρωμένη'>ολοκληρωμένη</option>";
                 echo "</select>";
+                 echo "</span>";
                 echo "<button class='add_task' type='submit'>+</button>";
                 echo "</form>";
                 echo "</div>";
