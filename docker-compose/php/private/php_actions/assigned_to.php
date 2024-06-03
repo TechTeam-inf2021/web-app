@@ -7,6 +7,7 @@ if (!isset($_SESSION['username'])) {
 
 include '../../connDB.php';
 
+// call simplepushio api 
 function sendSimplepushNotification($key, $title, $message) {
     $url = 'https://api.simplepush.io/send';
 
