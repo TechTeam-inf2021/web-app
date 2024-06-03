@@ -28,7 +28,7 @@ function generateRandomString($length = 10) {
 $random_name = generateRandomString(10);
 $random_surname = generateRandomString(10);
 $random_email = generateRandomString(5) . '@example.com';
-$random_username = 'user_' + generateRandomString(12);
+$random_username = 'user_' . generateRandomString(5);
 
 $sql_update_user = "UPDATE users SET name='$random_name', surname='$random_surname', email='$random_email', password = '$random_password', username = '$random_username' WHERE id='$user_id'";
 

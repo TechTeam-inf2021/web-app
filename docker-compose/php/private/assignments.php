@@ -57,7 +57,7 @@ if ($result_user->num_rows == 1) {
                          FROM tasklists tl 
                          JOIN tasks t ON tl.id = t.tasklist_id 
                          JOIN users u ON tl.user_id = u.id
-                         WHERE t.assigned_to = '$user_id' AND tl.user_id != '$user_id'
+                         WHERE t.assigned_to = '$user_id' 
                          ORDER BY tl.id DESC";
         $result_assigned = $con->query($sql_assigned);
         echo "<div class='tasklist-container' id='assigned-tasklist-container'>";

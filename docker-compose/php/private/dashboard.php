@@ -114,11 +114,11 @@ if ($result_user->num_rows == 1) {
                             "<div class='status'><div>Current status:</div>" . 
                                 $row_2["status"] . 
                             "</div>";
-                            if($row_2["assigned_to_username"] != null){
-                                echo "<div class='status'><div>Assigned to:</div>" . 
-                                    $row_2["assigned_to_username"] . 
-                                "</div>";
-                            }
+                            
+                            echo "<div class='status'><div>Assigned to:</div>" . 
+                                $row_2["assigned_to_username"] . 
+                            "</div>";
+                            
                             echo "<form class ='assign-to' action='./php_actions/assigned_to.php' method='POST' style='display:inline-block; margin-top: 10px;'>
                                 <input type='hidden' name='task_id' value='" . $row_2["id"] . "'>
                                 <h4>Assign task to:</h4>
