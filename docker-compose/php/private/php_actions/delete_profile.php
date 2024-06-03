@@ -18,14 +18,15 @@ function generateRandomString($length = 10) {
 $random_name = generateRandomString(10);
 $random_surname = generateRandomString(10);
 $random_email = generateRandomString(5) . '@example.com';
+$random_username = generateRandomString(12);
 
-$sql_update_user = "UPDATE users SET name='$random_name', surname='$random_surname', email='$random_email' WHERE username='$username'";
+$sql_update_user = "UPDATE users SET name='$random_name', surname='$random_surname', email='$random_email', password = '$random_password', username = '$random_username'WHERE username='$username'";
 
 if (mysqli_query($con, $sql_update_user)) {
     // Αποσύνδεση του χρήστη
     unset($_SESSION['username']);
     session_destroy();
-    header("Location: ../../auth/login.php");
+    header("Location: ../index.php");
     exit;
 } else {
     echo "Σφάλμα κατά την ενημέρωση του προφίλ: " . mysqli_error($con);

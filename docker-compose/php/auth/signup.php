@@ -35,6 +35,7 @@ mysqli_close($con);
     <title>Sign up | Trello</title>
     <link rel="icon" href="https://bxp-content-static.prod.public.atl-paas.net/img/favicon.ico">
     <link rel="stylesheet" href="./styles/signup.css">
+    <script src="./auth.js"></script>
 </head>
 
 <body>
